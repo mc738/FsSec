@@ -1,0 +1,47 @@
+﻿open System
+open System.IO
+open System.Net
+open System.Net.Http
+
+let test _ =
+
+    let baseUrl = "http://localhost:8808/"
+
+    let urls =
+        [ "login.php"
+          "login"
+          "" ]
+
+    use client = new HttpClient()
+
+    let acceptList = [ 200 ]
+
+    urls
+    |> List.iter (fun url ->
+        async {
+            let fullUrl = $"{baseUrl}/{url}"
+
+            let! response = client.GetAsync(fullUrl) |> Async.AwaitTask
+
+            match acceptList |> List.contains (int response.StatusCode) with
+            | false -> return ()
+            | true ->
+                let content = response.Content.ReadAsStream()
+
+                use tr = new StreamReader(content)
+
+                let result = tr.ReadToEnd()
+
+                printfn $"Success for {fullUrl}"
+                printfn "Response:"
+                printfn $"{result}"
+
+                return ()
+        }
+        |> fun computation ->
+            Async.RunSynchronously computation)
+
+    ()
+
+
+test ()
