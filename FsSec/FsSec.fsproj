@@ -6,7 +6,18 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Include="Library.fs"/>
+        <Folder Include="V1\Core\" />
+        <Compile Include="V1\Store\Core\IFsSecStore.fs" />
+        <Compile Include="V1\Store\SQLite\Operations.fs" />
+        <Compile Include="V1\Store\SQLite\Impl.fs" />
+        <Compile Include="V1\Reporting\Core.fs" />
+        <Compile Include="V1\Pipelines\Core.fs" />
+        <Compile Include="V1\Pipelines\Configuration.fs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Freql.Sqlite" Version="0.13.1" />
+      <PackageReference Include="FsToolbox" Version="0.12.5" />
     </ItemGroup>
 
 </Project>
