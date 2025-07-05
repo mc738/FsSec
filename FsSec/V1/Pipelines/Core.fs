@@ -5,71 +5,100 @@ open System.Diagnostics
 open FsSec.V1.Store.Core
 open FsToolbox.Core.Results
 
+[<AutoOpen>]
 module Core =
 
-    module Internal =
-
-        let initialize () =
-
-
-
-            ()
-
-    module Operations =
-        
-        let initialize () = ()
-    
-    
-    type PipelineContext =
-        { RunId: string
-          Store: IFsSecStore }
-        
-        interface IDisposable with
-            member this.Dispose() =
-                this.Store.Dispose()
-
-        member pc.Log() = ()
-
-        member pc.LogInfo() = ()
-
-        member pc.LogTrace() = ()
-
-        member pc.LogWarning() = ()
-
-        member pc.LogError() = ()
-        
-        member pc.GetRunId() = pc.RunId
-        
-        member pc.GetStore() = pc.Store
-        
     [<RequireQualifiedAccess>]
     type PipelineStepInitializationResult =
         | Success
         | Skipped of Reason: string
-        | Error of Message: string
         | Failure of FailureResult
 
     [<RequireQualifiedAccess>]
     type PipelineStepSetUpResult =
         | Success
         | Skipped of Reason: string
-        | Error of Message: string
         | Failure of FailureResult
 
     [<RequireQualifiedAccess>]
     type PipelineStepExecutionResult =
         | Success
         | Skipped of Reason: string
-        | Error of Message: string
         | Failure of FailureResult
 
     [<RequireQualifiedAccess>]
     type PipelineStepCleanUpResult =
         | Success
         | Skipped of Reason: string
-        | Error of Message: string
         | Failure of FailureResult
 
+
+    type TimedResult<'T> =
+        { Result: 'T
+          MillisecondsElapsed: int64
+          TicksElapsed: int64
+          Elapsed: TimeSpan }
+
+    type PipelineContext =
+        { RunId: string
+          RootPath: string
+          Store: IFsSecStore
+          Timer: Stopwatch }
+
+        interface IDisposable with
+            member this.Dispose() = this.Store.Dispose()
+
+        member pc.GetRunId() = pc.RunId
+
+        member pc.GetStore() = pc.Store
+        
+        member pc.GetLogger() = { Scope = None; Store = pc.Store }
+
+        member pc.GetScopedLogger(scope) = { Scope = None; Store = pc.Store }
+        
+        member pc.Time(fn: unit -> 'T) =
+            pc.Timer.Start()
+
+            let result = fn ()
+
+            pc.Timer.Stop()
+
+            let timedResult =
+                { Result = result
+                  MillisecondsElapsed = pc.Timer.ElapsedMilliseconds
+                  TicksElapsed = pc.Timer.ElapsedTicks
+                  Elapsed = pc.Timer.Elapsed }
+
+            pc.Timer.Reset()
+            timedResult
+
+        member internal pc.SaveInitializationStepResult(timedResult: TimedResult<PipelineStepInitializationResult>) = ()
+
+    and PipelineLogger =
+        private {
+            Scope: string option
+            Store: IFsSecStore
+        }
+        
+        member pc.Log
+            (level: string, from: string, message: string, scope: string option, timeElapsed: TimeSpan option)
+            =
+            ()
+        
+        member pc.LogInfo(from: string, message: string, ?timeElapsed: TimeSpan) =
+            pc.Log("info", from, message, scope, )
+
+        member pc.LogTrace(from: string, message: string, ?scope: string, ?timeElapsed: TimeSpan) =
+            pc.Log("trace", from, message, scope)
+
+        member pc.LogWarning(from: string, message: string, ?scope: string, ?timeElapsed: TimeSpan) =
+            pc.Log("warn", from, message, scope)
+
+        member pc.LogError(from: string, message: string, ?scope: string, ?timeElapsed: TimeSpan) =
+            pc.Log("error", from, message, scope)
+
+
+        
     type IPipelineStep =
 
         abstract member Initialize: Ctx: PipelineContext -> PipelineStepInitializationResult
@@ -105,7 +134,6 @@ module Core =
                             match step.Handler.Initialize(p.Context) with
                             | PipelineStepInitializationResult.Success as r -> r
                             | PipelineStepInitializationResult.Skipped _ as r -> r
-                            | PipelineStepInitializationResult.Error _ as r when step.Mandatory -> r
                             | PipelineStepInitializationResult.Failure _ as r when step.Mandatory -> r
                             | _ -> PipelineStepInitializationResult.Skipped "Non-mandatory step failed"
                         | PipelineStepInitializationResult.Error _ -> result
@@ -114,23 +142,34 @@ module Core =
                 |> function
                     | PipelineStepInitializationResult.Success
                     | PipelineStepInitializationResult.Skipped _ -> ActionResult.Success()
-                    | PipelineStepInitializationResult.Error message ->
-                        ActionResult.Failure
-                            { Message = message
-                              DisplayMessage = message
-                              Exception = None
-                              IsTransient = false
-                              Metadata = Map.empty }
                     | PipelineStepInitializationResult.Failure failureResult -> ActionResult.Failure failureResult)
 
-        member p.Run() =
+        member p.Run(?skipInitialization: bool) =
+
+
             // Initialize first
+            if skipInitialization |> Option.defaultValue false then
+                ActionResult.Success()
+            else
+                ActionResult.Success()
+            |> ActionResult.bind (fun _ ->
+                // Then run set up
 
-            // Then run set up
+                ActionResult.Success())
+            |> ActionResult.bind (fun _ ->
+                // Then execute
 
-            // Then execute
+                ActionResult.Success())
+            |> ActionResult.bind (fun _ ->
+                // Then clean up
 
-            // Then clean up
+                ActionResult.Success())
+            |> function
+                | ActionResult.Success _ -> ()
+                | ActionResult.Failure failureResult -> failwith "todo"
+
+
+
 
 
             ()
