@@ -6,14 +6,16 @@ open FsToolbox.Extensions.Strings
 module Configuration =
 
 
+    [<RequireQualifiedAccess>]
     type ConfigurationValueType =
         | Literal of string
         | EnvironmentalVariable of string
+        | Variable of string
+        | Path of string
 
-    let tryGetEnvironmentalVariable (name: string) =
-        match name.IsNullOrWhiteSpace() with
-        | true -> None
-        | false ->
-            match name.[0] with
-            | '#' -> Environment.GetEnvironmentVariable(name.Substring(1)).ToOption()
-            | _ -> Environment.GetEnvironmentVariable(name).ToOption()
+        static member Deserialize(value: string) =
+            match value.[0] with
+            | '$' -> ConfigurationValueType.EnvironmentalVariable(value.Substring(1))
+            | '@' -> ConfigurationValueType.Path(value.Substring(1))
+            | '#' -> ConfigurationValueType.Variable(value.Substring(1))
+            | _ -> ConfigurationValueType.Literal value
