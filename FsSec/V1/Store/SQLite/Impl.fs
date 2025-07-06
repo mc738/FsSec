@@ -15,3 +15,16 @@ module Impl =
             member this.Initialize() = Operations.initialize ctx
 
             member this.Dispose() = (ctx :> IDisposable).Dispose()
+            member this.AddArtifact(runId, artifact, version) = failwith "todo"
+            member this.AddGlobalArtifact(artifact, version) = failwith "todo"
+            member this.AddGlobalResource(resource, version) = failwith "todo"
+            member this.AddOrUpdateKeyValue(runId, key, value) = failwith "todo"
+            member this.AddPipelineStepResult(runId) = failwith "todo"
+            member this.AddResource(runId, resource, version) = failwith "todo"
+            member this.GetArtifact(runId, artifactId, version) = failwith "todo"
+            member this.GetGlobalArtifact(artifactId, version) = failwith "todo"
+            member this.GetGlobalKeyValue(key) = failwith "todo"
+            member this.GetGlobalResource(resourceId, version) = failwith "todo"
+            member this.GetKeyValue(runId, key) = failwith "todo"
+            member this.GetResource(runId, resourceId, version) = failwith "todo"
+            member this.InitializePipelineRun(runId) = failwith "todo"
