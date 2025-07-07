@@ -1,0 +1,16 @@
+﻿{
+    "store": {
+        "type": "sqlite",
+        "path": "//"
+    },
+    "preprocessing": [
+    ],
+    "steps": [
+    ],
+    "postProcessing": [
+    ],
+    "variables": {
+        "foo": 2,
+        "bar": ""
+    }
+}
