@@ -11,7 +11,7 @@ namespace FunkyPM.V1.Store.SQLite.Persistence
 
 open System
 open System.Text.Json.Serialization
-open Freql.Core.Types
+open Freql.Core.Common
 open Freql.Sqlite
 
 module private Utils =
@@ -30,7 +30,7 @@ module private Utils =
 /// Records representing database bindings for `records`.
 /// </summary>
 /// <remarks>
-/// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+/// This record was generated via Freql.Tools on 06/07/2025 17:21:44
 /// </remarks>
 [<RequireQualifiedAccess>]
 module Records =
@@ -38,9 +38,9 @@ module Records =
     /// A record representing a row in the table `cfg__pipeline_version_steps`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type CfgPipelineVersionSteps =
+    type PipelineVersionStep =
         { [<JsonPropertyName("id")>] Id: string
           [<JsonPropertyName("pipelineVersionId")>] PipelineVersionId: string
           [<JsonPropertyName("stepOrder")>] StepOrder: int
@@ -100,22 +100,22 @@ module Records =
         static member CreateTriggersSql() = []
     
         static member InitializationSql(checkIfExists: bool) =
-            [ CfgPipelineVersionSteps.CreateTableSql()
+            [ PipelineVersionStep.CreateTableSql()
               |> Utils.updateCheckIfExists checkIfExists "TABLE"
               yield!
-                  CfgPipelineVersionSteps.CreateIndexesSql()
+                  PipelineVersionStep.CreateIndexesSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "INDEX")
               yield!
-                  CfgPipelineVersionSteps.CreateTriggersSql()
+                  PipelineVersionStep.CreateTriggersSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "TRIGGER")  ]
     
     /// <summary>
     /// A record representing a row in the table `cfg__pipeline_versions`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type CfgPipelineVersions =
+    type PipelineVersion =
         { [<JsonPropertyName("id")>] Id: string
           [<JsonPropertyName("pipelineId")>] PipelineId: string
           [<JsonPropertyName("version")>] Version: int
@@ -171,22 +171,22 @@ module Records =
         static member CreateTriggersSql() = []
     
         static member InitializationSql(checkIfExists: bool) =
-            [ CfgPipelineVersions.CreateTableSql()
+            [ PipelineVersion.CreateTableSql()
               |> Utils.updateCheckIfExists checkIfExists "TABLE"
               yield!
-                  CfgPipelineVersions.CreateIndexesSql()
+                  PipelineVersion.CreateIndexesSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "INDEX")
               yield!
-                  CfgPipelineVersions.CreateTriggersSql()
+                  PipelineVersion.CreateTriggersSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "TRIGGER")  ]
     
     /// <summary>
     /// A record representing a row in the table `cfg__pipelines`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type CfgPipelines =
+    type Pipeline =
         { [<JsonPropertyName("id")>] Id: string
           [<JsonPropertyName("userGroupId")>] UserGroupId: string
           [<JsonPropertyName("name")>] Name: string
@@ -232,22 +232,22 @@ module Records =
         static member CreateTriggersSql() = []
     
         static member InitializationSql(checkIfExists: bool) =
-            [ CfgPipelines.CreateTableSql()
+            [ Pipeline.CreateTableSql()
               |> Utils.updateCheckIfExists checkIfExists "TABLE"
               yield!
-                  CfgPipelines.CreateIndexesSql()
+                  Pipeline.CreateIndexesSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "INDEX")
               yield!
-                  CfgPipelines.CreateTriggersSql()
+                  Pipeline.CreateTriggersSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "TRIGGER")  ]
     
     /// <summary>
     /// A record representing a row in the table `cfg__user_groups`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type CfgUserGroups =
+    type UserGroup =
         { [<JsonPropertyName("id")>] Id: string
           [<JsonPropertyName("name")>] Name: string
           [<JsonPropertyName("createdOn")>] CreatedOn: DateTime
@@ -287,22 +287,22 @@ module Records =
         static member CreateTriggersSql() = []
     
         static member InitializationSql(checkIfExists: bool) =
-            [ CfgUserGroups.CreateTableSql()
+            [ UserGroup.CreateTableSql()
               |> Utils.updateCheckIfExists checkIfExists "TABLE"
               yield!
-                  CfgUserGroups.CreateIndexesSql()
+                  UserGroup.CreateIndexesSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "INDEX")
               yield!
-                  CfgUserGroups.CreateTriggersSql()
+                  UserGroup.CreateTriggersSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "TRIGGER")  ]
     
     /// <summary>
     /// A record representing a row in the table `cfg__users`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type CfgUsers =
+    type User =
         { [<JsonPropertyName("id")>] Id: string
           [<JsonPropertyName("name")>] Name: string }
     
@@ -334,22 +334,22 @@ module Records =
         static member CreateTriggersSql() = []
     
         static member InitializationSql(checkIfExists: bool) =
-            [ CfgUsers.CreateTableSql()
+            [ User.CreateTableSql()
               |> Utils.updateCheckIfExists checkIfExists "TABLE"
               yield!
-                  CfgUsers.CreateIndexesSql()
+                  User.CreateIndexesSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "INDEX")
               yield!
-                  CfgUsers.CreateTriggersSql()
+                  User.CreateTriggersSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "TRIGGER")  ]
     
     /// <summary>
     /// A record representing a row in the table `cfg_classifications`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type CfgClassifications =
+    type Classification =
         { [<JsonPropertyName("id")>] Id: string
           [<JsonPropertyName("name")>] Name: string
           [<JsonPropertyName("description")>] Description: string option
@@ -395,22 +395,22 @@ module Records =
         static member CreateTriggersSql() = []
     
         static member InitializationSql(checkIfExists: bool) =
-            [ CfgClassifications.CreateTableSql()
+            [ Classification.CreateTableSql()
               |> Utils.updateCheckIfExists checkIfExists "TABLE"
               yield!
-                  CfgClassifications.CreateIndexesSql()
+                  Classification.CreateIndexesSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "INDEX")
               yield!
-                  CfgClassifications.CreateTriggersSql()
+                  Classification.CreateTriggersSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "TRIGGER")  ]
     
     /// <summary>
     /// A record representing a row in the table `cfg_file_types`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type CfgFileTypes =
+    type FileType =
         { [<JsonPropertyName("id")>] Id: string option
           [<JsonPropertyName("name")>] Name: string
           [<JsonPropertyName("description")>] Description: string
@@ -454,22 +454,22 @@ module Records =
         static member CreateTriggersSql() = []
     
         static member InitializationSql(checkIfExists: bool) =
-            [ CfgFileTypes.CreateTableSql()
+            [ FileType.CreateTableSql()
               |> Utils.updateCheckIfExists checkIfExists "TABLE"
               yield!
-                  CfgFileTypes.CreateIndexesSql()
+                  FileType.CreateIndexesSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "INDEX")
               yield!
-                  CfgFileTypes.CreateTriggersSql()
+                  FileType.CreateTriggersSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "TRIGGER")  ]
     
     /// <summary>
     /// A record representing a row in the table `cfg_metadata`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type CfgMetadata =
+    type MetadataItem =
         { [<JsonPropertyName("itemKey")>] ItemKey: string
           [<JsonPropertyName("itemValue")>] ItemValue: string
           [<JsonPropertyName("lastUpdated")>] LastUpdated: DateTime }
@@ -505,22 +505,22 @@ module Records =
         static member CreateTriggersSql() = []
     
         static member InitializationSql(checkIfExists: bool) =
-            [ CfgMetadata.CreateTableSql()
+            [ MetadataItem.CreateTableSql()
               |> Utils.updateCheckIfExists checkIfExists "TABLE"
               yield!
-                  CfgMetadata.CreateIndexesSql()
+                  MetadataItem.CreateIndexesSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "INDEX")
               yield!
-                  CfgMetadata.CreateTriggersSql()
+                  MetadataItem.CreateTriggersSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "TRIGGER")  ]
     
     /// <summary>
     /// A record representing a row in the table `cfg_tags`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type CfgTags =
+    type Tag =
         { [<JsonPropertyName("tag")>] Tag: string }
     
         static member Blank() =
@@ -548,22 +548,22 @@ module Records =
         static member CreateTriggersSql() = []
     
         static member InitializationSql(checkIfExists: bool) =
-            [ CfgTags.CreateTableSql()
+            [ Tag.CreateTableSql()
               |> Utils.updateCheckIfExists checkIfExists "TABLE"
               yield!
-                  CfgTags.CreateIndexesSql()
+                  Tag.CreateIndexesSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "INDEX")
               yield!
-                  CfgTags.CreateTriggersSql()
+                  Tag.CreateTriggersSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "TRIGGER")  ]
     
     /// <summary>
     /// A record representing a row in the table `core__pipeline_run_artifact_classifications`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type CorePipelineRunArtifactClassifications =
+    type PipelineRunArtifactClassification =
         { [<JsonPropertyName("artifactId")>] ArtifactId: string
           [<JsonPropertyName("classificationId")>] ClassificationId: string
           [<JsonPropertyName("lastUpdated")>] LastUpdated: DateTime }
@@ -603,22 +603,22 @@ module Records =
         static member CreateTriggersSql() = []
     
         static member InitializationSql(checkIfExists: bool) =
-            [ CorePipelineRunArtifactClassifications.CreateTableSql()
+            [ PipelineRunArtifactClassification.CreateTableSql()
               |> Utils.updateCheckIfExists checkIfExists "TABLE"
               yield!
-                  CorePipelineRunArtifactClassifications.CreateIndexesSql()
+                  PipelineRunArtifactClassification.CreateIndexesSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "INDEX")
               yield!
-                  CorePipelineRunArtifactClassifications.CreateTriggersSql()
+                  PipelineRunArtifactClassification.CreateTriggersSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "TRIGGER")  ]
     
     /// <summary>
     /// A record representing a row in the table `core__pipeline_run_artifact_metadata`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type CorePipelineRunArtifactMetadata =
+    type PipelineRunArtifactMetadataItem =
         { [<JsonPropertyName("artifactId")>] ArtifactId: string
           [<JsonPropertyName("itemKey")>] ItemKey: string
           [<JsonPropertyName("itemValue")>] ItemValue: string
@@ -660,22 +660,22 @@ module Records =
         static member CreateTriggersSql() = []
     
         static member InitializationSql(checkIfExists: bool) =
-            [ CorePipelineRunArtifactMetadata.CreateTableSql()
+            [ PipelineRunArtifactMetadataItem.CreateTableSql()
               |> Utils.updateCheckIfExists checkIfExists "TABLE"
               yield!
-                  CorePipelineRunArtifactMetadata.CreateIndexesSql()
+                  PipelineRunArtifactMetadataItem.CreateIndexesSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "INDEX")
               yield!
-                  CorePipelineRunArtifactMetadata.CreateTriggersSql()
+                  PipelineRunArtifactMetadataItem.CreateTriggersSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "TRIGGER")  ]
     
     /// <summary>
     /// A record representing a row in the table `core__pipeline_run_artifact_tags`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type CorePipelineRunArtifactTags =
+    type PipelineRunArtifactTag =
         { [<JsonPropertyName("artifactId")>] ArtifactId: string
           [<JsonPropertyName("tag")>] Tag: string
           [<JsonPropertyName("lastUpdated")>] LastUpdated: DateTime }
@@ -715,22 +715,22 @@ module Records =
         static member CreateTriggersSql() = []
     
         static member InitializationSql(checkIfExists: bool) =
-            [ CorePipelineRunArtifactTags.CreateTableSql()
+            [ PipelineRunArtifactTag.CreateTableSql()
               |> Utils.updateCheckIfExists checkIfExists "TABLE"
               yield!
-                  CorePipelineRunArtifactTags.CreateIndexesSql()
+                  PipelineRunArtifactTag.CreateIndexesSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "INDEX")
               yield!
-                  CorePipelineRunArtifactTags.CreateTriggersSql()
+                  PipelineRunArtifactTag.CreateTriggersSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "TRIGGER")  ]
     
     /// <summary>
     /// A record representing a row in the table `core__pipeline_run_artifacts`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type CorePipelineRunArtifacts =
+    type PipelineRunArtifact =
         { [<JsonPropertyName("id")>] Id: string
           [<JsonPropertyName("pipelineRunId")>] PipelineRunId: string
           [<JsonPropertyName("name")>] Name: string
@@ -786,22 +786,22 @@ module Records =
         static member CreateTriggersSql() = []
     
         static member InitializationSql(checkIfExists: bool) =
-            [ CorePipelineRunArtifacts.CreateTableSql()
+            [ PipelineRunArtifact.CreateTableSql()
               |> Utils.updateCheckIfExists checkIfExists "TABLE"
               yield!
-                  CorePipelineRunArtifacts.CreateIndexesSql()
+                  PipelineRunArtifact.CreateIndexesSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "INDEX")
               yield!
-                  CorePipelineRunArtifacts.CreateTriggersSql()
+                  PipelineRunArtifact.CreateTriggersSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "TRIGGER")  ]
     
     /// <summary>
     /// A record representing a row in the table `core__pipeline_run_data_store`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type CorePipelineRunDataStore =
+    type PipelineRunDataStoreItem =
         { [<JsonPropertyName("piplineRunId")>] PiplineRunId: string
           [<JsonPropertyName("itemKey")>] ItemKey: string
           [<JsonPropertyName("itemValueBlob")>] ItemValueBlob: BlobField
@@ -847,22 +847,22 @@ module Records =
         static member CreateTriggersSql() = []
     
         static member InitializationSql(checkIfExists: bool) =
-            [ CorePipelineRunDataStore.CreateTableSql()
+            [ PipelineRunDataStoreItem.CreateTableSql()
               |> Utils.updateCheckIfExists checkIfExists "TABLE"
               yield!
-                  CorePipelineRunDataStore.CreateIndexesSql()
+                  PipelineRunDataStoreItem.CreateIndexesSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "INDEX")
               yield!
-                  CorePipelineRunDataStore.CreateTriggersSql()
+                  PipelineRunDataStoreItem.CreateTriggersSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "TRIGGER")  ]
     
     /// <summary>
     /// A record representing a row in the table `core__pipeline_run_key_values`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type CorePipelineRunKeyValues =
+    type PipelineRunKeyValue =
         { [<JsonPropertyName("pipelineRunId")>] PipelineRunId: string option
           [<JsonPropertyName("itemKey")>] ItemKey: string
           [<JsonPropertyName("itemValue")>] ItemValue: string
@@ -904,22 +904,22 @@ module Records =
         static member CreateTriggersSql() = []
     
         static member InitializationSql(checkIfExists: bool) =
-            [ CorePipelineRunKeyValues.CreateTableSql()
+            [ PipelineRunKeyValue.CreateTableSql()
               |> Utils.updateCheckIfExists checkIfExists "TABLE"
               yield!
-                  CorePipelineRunKeyValues.CreateIndexesSql()
+                  PipelineRunKeyValue.CreateIndexesSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "INDEX")
               yield!
-                  CorePipelineRunKeyValues.CreateTriggersSql()
+                  PipelineRunKeyValue.CreateTriggersSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "TRIGGER")  ]
     
     /// <summary>
     /// A record representing a row in the table `core__pipeline_run_logs`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type CorePipelineRunLogs =
+    type PipelineRunLogItem =
         { [<JsonPropertyName("pipelineRunId")>] PipelineRunId: int64
           [<JsonPropertyName("itemDate")>] ItemDate: string
           [<JsonPropertyName("level")>] Level: string
@@ -963,22 +963,22 @@ module Records =
         static member CreateTriggersSql() = []
     
         static member InitializationSql(checkIfExists: bool) =
-            [ CorePipelineRunLogs.CreateTableSql()
+            [ PipelineRunLogItem.CreateTableSql()
               |> Utils.updateCheckIfExists checkIfExists "TABLE"
               yield!
-                  CorePipelineRunLogs.CreateIndexesSql()
+                  PipelineRunLogItem.CreateIndexesSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "INDEX")
               yield!
-                  CorePipelineRunLogs.CreateTriggersSql()
+                  PipelineRunLogItem.CreateTriggersSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "TRIGGER")  ]
     
     /// <summary>
     /// A record representing a row in the table `core__pipeline_run_paths`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type CorePipelineRunPaths =
+    type PipelineRunPath =
         { [<JsonPropertyName("pipelineRunId")>] PipelineRunId: string
           [<JsonPropertyName("id")>] Id: string
           [<JsonPropertyName("path")>] Path: string
@@ -1020,22 +1020,22 @@ module Records =
         static member CreateTriggersSql() = []
     
         static member InitializationSql(checkIfExists: bool) =
-            [ CorePipelineRunPaths.CreateTableSql()
+            [ PipelineRunPath.CreateTableSql()
               |> Utils.updateCheckIfExists checkIfExists "TABLE"
               yield!
-                  CorePipelineRunPaths.CreateIndexesSql()
+                  PipelineRunPath.CreateIndexesSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "INDEX")
               yield!
-                  CorePipelineRunPaths.CreateTriggersSql()
+                  PipelineRunPath.CreateTriggersSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "TRIGGER")  ]
     
     /// <summary>
     /// A record representing a row in the table `core__pipeline_run_resource_classifications`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type CorePipelineRunResourceClassifications =
+    type PipelineRunResourceClassification =
         { [<JsonPropertyName("resourceId")>] ResourceId: string
           [<JsonPropertyName("classificationId")>] ClassificationId: string
           [<JsonPropertyName("lastUpdated")>] LastUpdated: DateTime }
@@ -1075,20 +1075,20 @@ module Records =
         static member CreateTriggersSql() = []
     
         static member InitializationSql(checkIfExists: bool) =
-            [ CorePipelineRunResourceClassifications.CreateTableSql()
+            [ PipelineRunResourceClassification.CreateTableSql()
               |> Utils.updateCheckIfExists checkIfExists "TABLE"
               yield!
-                  CorePipelineRunResourceClassifications.CreateIndexesSql()
+                  PipelineRunResourceClassification.CreateIndexesSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "INDEX")
               yield!
-                  CorePipelineRunResourceClassifications.CreateTriggersSql()
+                  PipelineRunResourceClassification.CreateTriggersSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "TRIGGER")  ]
     
     /// <summary>
     /// A record representing a row in the table `core__pipeline_run_resource_metadata`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     type CorePipelineRunResourceMetadata =
         { [<JsonPropertyName("resourceId")>] ResourceId: string
@@ -1145,9 +1145,9 @@ module Records =
     /// A record representing a row in the table `core__pipeline_run_resource_tags`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type CorePipelineRunResourceTags =
+    type PipelineRunResourceTag =
         { [<JsonPropertyName("resourceId")>] ResourceId: string
           [<JsonPropertyName("tag")>] Tag: string
           [<JsonPropertyName("lastUpdated")>] LastUpdated: DateTime }
@@ -1187,22 +1187,22 @@ module Records =
         static member CreateTriggersSql() = []
     
         static member InitializationSql(checkIfExists: bool) =
-            [ CorePipelineRunResourceTags.CreateTableSql()
+            [ PipelineRunResourceTag.CreateTableSql()
               |> Utils.updateCheckIfExists checkIfExists "TABLE"
               yield!
-                  CorePipelineRunResourceTags.CreateIndexesSql()
+                  PipelineRunResourceTag.CreateIndexesSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "INDEX")
               yield!
-                  CorePipelineRunResourceTags.CreateTriggersSql()
+                  PipelineRunResourceTag.CreateTriggersSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "TRIGGER")  ]
     
     /// <summary>
     /// A record representing a row in the table `core__pipeline_run_resources`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type CorePipelineRunResources =
+    type PipelineRunResource =
         { [<JsonPropertyName("id")>] Id: string
           [<JsonPropertyName("pipelineRunId")>] PipelineRunId: string
           [<JsonPropertyName("name")>] Name: string
@@ -1258,22 +1258,22 @@ module Records =
         static member CreateTriggersSql() = []
     
         static member InitializationSql(checkIfExists: bool) =
-            [ CorePipelineRunResources.CreateTableSql()
+            [ PipelineRunResource.CreateTableSql()
               |> Utils.updateCheckIfExists checkIfExists "TABLE"
               yield!
-                  CorePipelineRunResources.CreateIndexesSql()
+                  PipelineRunResource.CreateIndexesSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "INDEX")
               yield!
-                  CorePipelineRunResources.CreateTriggersSql()
+                  PipelineRunResource.CreateTriggersSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "TRIGGER")  ]
     
     /// <summary>
     /// A record representing a row in the table `core__pipeline_run_results`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type CorePipelineRunResults =
+    type PipelineRunResult =
         { [<JsonPropertyName("pipelineRunId")>] PipelineRunId: string option
           [<JsonPropertyName("result")>] Result: string option
           [<JsonPropertyName("startedOn")>] StartedOn: string option
@@ -1319,22 +1319,22 @@ module Records =
         static member CreateTriggersSql() = []
     
         static member InitializationSql(checkIfExists: bool) =
-            [ CorePipelineRunResults.CreateTableSql()
+            [ PipelineRunResult.CreateTableSql()
               |> Utils.updateCheckIfExists checkIfExists "TABLE"
               yield!
-                  CorePipelineRunResults.CreateIndexesSql()
+                  PipelineRunResult.CreateIndexesSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "INDEX")
               yield!
-                  CorePipelineRunResults.CreateTriggersSql()
+                  PipelineRunResult.CreateTriggersSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "TRIGGER")  ]
     
     /// <summary>
     /// A record representing a row in the table `core__pipeline_run_step_results`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type CorePipelineRunStepResults =
+    type PipelineRunStepResult =
         { [<JsonPropertyName("runId")>] RunId: string
           [<JsonPropertyName("stepId")>] StepId: string
           [<JsonPropertyName("stepOrder")>] StepOrder: int
@@ -1398,22 +1398,22 @@ module Records =
         static member CreateTriggersSql() = []
     
         static member InitializationSql(checkIfExists: bool) =
-            [ CorePipelineRunStepResults.CreateTableSql()
+            [ PipelineRunStepResult.CreateTableSql()
               |> Utils.updateCheckIfExists checkIfExists "TABLE"
               yield!
-                  CorePipelineRunStepResults.CreateIndexesSql()
+                  PipelineRunStepResult.CreateIndexesSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "INDEX")
               yield!
-                  CorePipelineRunStepResults.CreateTriggersSql()
+                  PipelineRunStepResult.CreateTriggersSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "TRIGGER")  ]
     
     /// <summary>
     /// A record representing a row in the table `core__pipeline_runs`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type CorePipelineRuns =
+    type PipelineRun =
         { [<JsonPropertyName("id")>] Id: string
           [<JsonPropertyName("pipelineVersionId")>] PipelineVersionId: string
           [<JsonPropertyName("startedOn")>] StartedOn: string
@@ -1455,22 +1455,22 @@ module Records =
         static member CreateTriggersSql() = []
     
         static member InitializationSql(checkIfExists: bool) =
-            [ CorePipelineRuns.CreateTableSql()
+            [ PipelineRun.CreateTableSql()
               |> Utils.updateCheckIfExists checkIfExists "TABLE"
               yield!
-                  CorePipelineRuns.CreateIndexesSql()
+                  PipelineRun.CreateIndexesSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "INDEX")
               yield!
-                  CorePipelineRuns.CreateTriggersSql()
+                  PipelineRun.CreateTriggersSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "TRIGGER")  ]
     
     /// <summary>
     /// A record representing a row in the table `store__artifact_version_classifications`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type StoreArtifactVersionClassifications =
+    type ArtifactVersionClassification =
         { [<JsonPropertyName("artifactId")>] ArtifactId: string option
           [<JsonPropertyName("classification")>] Classification: string
           [<JsonPropertyName("lastUpdated")>] LastUpdated: DateTime }
@@ -1510,22 +1510,22 @@ module Records =
         static member CreateTriggersSql() = []
     
         static member InitializationSql(checkIfExists: bool) =
-            [ StoreArtifactVersionClassifications.CreateTableSql()
+            [ ArtifactVersionClassification.CreateTableSql()
               |> Utils.updateCheckIfExists checkIfExists "TABLE"
               yield!
-                  StoreArtifactVersionClassifications.CreateIndexesSql()
+                  ArtifactVersionClassification.CreateIndexesSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "INDEX")
               yield!
-                  StoreArtifactVersionClassifications.CreateTriggersSql()
+                  ArtifactVersionClassification.CreateTriggersSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "TRIGGER")  ]
     
     /// <summary>
     /// A record representing a row in the table `store__artifact_version_metadata`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type StoreArtifactVersionMetadata =
+    type ArtifactVersionMetadataItem =
         { [<JsonPropertyName("artifactVersionId")>] ArtifactVersionId: string
           [<JsonPropertyName("itemKey")>] ItemKey: string
           [<JsonPropertyName("itemValue")>] ItemValue: string
@@ -1567,22 +1567,22 @@ module Records =
         static member CreateTriggersSql() = []
     
         static member InitializationSql(checkIfExists: bool) =
-            [ StoreArtifactVersionMetadata.CreateTableSql()
+            [ ArtifactVersionMetadataItem.CreateTableSql()
               |> Utils.updateCheckIfExists checkIfExists "TABLE"
               yield!
-                  StoreArtifactVersionMetadata.CreateIndexesSql()
+                  ArtifactVersionMetadataItem.CreateIndexesSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "INDEX")
               yield!
-                  StoreArtifactVersionMetadata.CreateTriggersSql()
+                  ArtifactVersionMetadataItem.CreateTriggersSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "TRIGGER")  ]
     
     /// <summary>
     /// A record representing a row in the table `store__artifact_version_tags`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type StoreArtifactVersionTags =
+    type ArtifactVersionTag =
         { [<JsonPropertyName("artifactVersionId")>] ArtifactVersionId: string option
           [<JsonPropertyName("tag")>] Tag: string }
     
@@ -1618,22 +1618,22 @@ module Records =
         static member CreateTriggersSql() = []
     
         static member InitializationSql(checkIfExists: bool) =
-            [ StoreArtifactVersionTags.CreateTableSql()
+            [ ArtifactVersionTag.CreateTableSql()
               |> Utils.updateCheckIfExists checkIfExists "TABLE"
               yield!
-                  StoreArtifactVersionTags.CreateIndexesSql()
+                  ArtifactVersionTag.CreateIndexesSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "INDEX")
               yield!
-                  StoreArtifactVersionTags.CreateTriggersSql()
+                  ArtifactVersionTag.CreateTriggersSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "TRIGGER")  ]
     
     /// <summary>
     /// A record representing a row in the table `store__artifact_versions`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type StoreArtifactVersions =
+    type ArtifactVersion =
         { [<JsonPropertyName("id")>] Id: string
           [<JsonPropertyName("artifactId")>] ArtifactId: string
           [<JsonPropertyName("version")>] Version: int
@@ -1699,22 +1699,22 @@ module Records =
         static member CreateTriggersSql() = []
     
         static member InitializationSql(checkIfExists: bool) =
-            [ StoreArtifactVersions.CreateTableSql()
+            [ ArtifactVersion.CreateTableSql()
               |> Utils.updateCheckIfExists checkIfExists "TABLE"
               yield!
-                  StoreArtifactVersions.CreateIndexesSql()
+                  ArtifactVersion.CreateIndexesSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "INDEX")
               yield!
-                  StoreArtifactVersions.CreateTriggersSql()
+                  ArtifactVersion.CreateTriggersSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "TRIGGER")  ]
     
     /// <summary>
     /// A record representing a row in the table `store__artifacts`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type StoreArtifacts =
+    type Artifact =
         { [<JsonPropertyName("id")>] Id: string
           [<JsonPropertyName("createdOn")>] CreatedOn: DateTime }
     
@@ -1746,22 +1746,22 @@ module Records =
         static member CreateTriggersSql() = []
     
         static member InitializationSql(checkIfExists: bool) =
-            [ StoreArtifacts.CreateTableSql()
+            [ Artifact.CreateTableSql()
               |> Utils.updateCheckIfExists checkIfExists "TABLE"
               yield!
-                  StoreArtifacts.CreateIndexesSql()
+                  Artifact.CreateIndexesSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "INDEX")
               yield!
-                  StoreArtifacts.CreateTriggersSql()
+                  Artifact.CreateTriggersSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "TRIGGER")  ]
     
     /// <summary>
     /// A record representing a row in the table `store__key_values`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type StoreKeyValues =
+    type KeyValue =
         { [<JsonPropertyName("itemKey")>] ItemKey: string option
           [<JsonPropertyName("itemValue")>] ItemValue: string option
           [<JsonPropertyName("lastUpdated")>] LastUpdated: DateTime }
@@ -1797,22 +1797,22 @@ module Records =
         static member CreateTriggersSql() = []
     
         static member InitializationSql(checkIfExists: bool) =
-            [ StoreKeyValues.CreateTableSql()
+            [ KeyValue.CreateTableSql()
               |> Utils.updateCheckIfExists checkIfExists "TABLE"
               yield!
-                  StoreKeyValues.CreateIndexesSql()
+                  KeyValue.CreateIndexesSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "INDEX")
               yield!
-                  StoreKeyValues.CreateTriggersSql()
+                  KeyValue.CreateTriggersSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "TRIGGER")  ]
     
     /// <summary>
     /// A record representing a row in the table `store__resource_version_classifications`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type StoreResourceVersionClassifications =
+    type ResourceVersionClassification =
         { [<JsonPropertyName("resourceId")>] ResourceId: string option
           [<JsonPropertyName("classification")>] Classification: string
           [<JsonPropertyName("lastUpdated")>] LastUpdated: DateTime }
@@ -1852,22 +1852,22 @@ module Records =
         static member CreateTriggersSql() = []
     
         static member InitializationSql(checkIfExists: bool) =
-            [ StoreResourceVersionClassifications.CreateTableSql()
+            [ ResourceVersionClassification.CreateTableSql()
               |> Utils.updateCheckIfExists checkIfExists "TABLE"
               yield!
-                  StoreResourceVersionClassifications.CreateIndexesSql()
+                  ResourceVersionClassification.CreateIndexesSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "INDEX")
               yield!
-                  StoreResourceVersionClassifications.CreateTriggersSql()
+                  ResourceVersionClassification.CreateTriggersSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "TRIGGER")  ]
     
     /// <summary>
     /// A record representing a row in the table `store__resource_version_metadata`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type StoreResourceVersionMetadata =
+    type ResourceVersionMetadataItem =
         { [<JsonPropertyName("resourceVersionId")>] ResourceVersionId: string
           [<JsonPropertyName("itemKey")>] ItemKey: string
           [<JsonPropertyName("itemValue")>] ItemValue: string
@@ -1909,22 +1909,22 @@ module Records =
         static member CreateTriggersSql() = []
     
         static member InitializationSql(checkIfExists: bool) =
-            [ StoreResourceVersionMetadata.CreateTableSql()
+            [ ResourceVersionMetadataItem.CreateTableSql()
               |> Utils.updateCheckIfExists checkIfExists "TABLE"
               yield!
-                  StoreResourceVersionMetadata.CreateIndexesSql()
+                  ResourceVersionMetadataItem.CreateIndexesSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "INDEX")
               yield!
-                  StoreResourceVersionMetadata.CreateTriggersSql()
+                  ResourceVersionMetadataItem.CreateTriggersSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "TRIGGER")  ]
     
     /// <summary>
     /// A record representing a row in the table `store__resource_version_tags`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type StoreResourceVersionTags =
+    type Artifact =
         { [<JsonPropertyName("resourceVersionId")>] ResourceVersionId: string option
           [<JsonPropertyName("tag")>] Tag: string }
     
@@ -1960,22 +1960,22 @@ module Records =
         static member CreateTriggersSql() = []
     
         static member InitializationSql(checkIfExists: bool) =
-            [ StoreResourceVersionTags.CreateTableSql()
+            [ Artifact.CreateTableSql()
               |> Utils.updateCheckIfExists checkIfExists "TABLE"
               yield!
-                  StoreResourceVersionTags.CreateIndexesSql()
+                  Artifact.CreateIndexesSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "INDEX")
               yield!
-                  StoreResourceVersionTags.CreateTriggersSql()
+                  Artifact.CreateTriggersSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "TRIGGER")  ]
     
     /// <summary>
     /// A record representing a row in the table `store__resource_versions`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type StoreResourceVersions =
+    type ResourceVersion =
         { [<JsonPropertyName("id")>] Id: string
           [<JsonPropertyName("resourceId")>] ResourceId: string
           [<JsonPropertyName("version")>] Version: int
@@ -2041,22 +2041,22 @@ module Records =
         static member CreateTriggersSql() = []
     
         static member InitializationSql(checkIfExists: bool) =
-            [ StoreResourceVersions.CreateTableSql()
+            [ ResourceVersion.CreateTableSql()
               |> Utils.updateCheckIfExists checkIfExists "TABLE"
               yield!
-                  StoreResourceVersions.CreateIndexesSql()
+                  ResourceVersion.CreateIndexesSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "INDEX")
               yield!
-                  StoreResourceVersions.CreateTriggersSql()
+                  ResourceVersion.CreateTriggersSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "TRIGGER")  ]
     
     /// <summary>
     /// A record representing a row in the table `store__resources`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type StoreResources =
+    type Resource =
         { [<JsonPropertyName("id")>] Id: string
           [<JsonPropertyName("createdOn")>] CreatedOn: DateTime }
     
@@ -2088,17 +2088,17 @@ module Records =
         static member CreateTriggersSql() = []
     
         static member InitializationSql(checkIfExists: bool) =
-            [ StoreResources.CreateTableSql()
+            [ Resource.CreateTableSql()
               |> Utils.updateCheckIfExists checkIfExists "TABLE"
               yield!
-                  StoreResources.CreateIndexesSql()
+                  Resource.CreateIndexesSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "INDEX")
               yield!
-                  StoreResources.CreateTriggersSql()
+                  Resource.CreateTriggersSql()
                   |> List.map (Utils.updateCheckIfExists checkIfExists "TRIGGER")  ]
     
 /// <remarks>
-/// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+/// This record was generated via Freql.Tools on 06/07/2025 17:21:44
 /// </remarks>
 [<RequireQualifiedAccess>]
 module Parameters =
@@ -2106,9 +2106,9 @@ module Parameters =
     /// A record representing a new row in the table `cfg__pipeline_version_steps`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type NewCfgPipelineVersionSteps =
+    type NewPipelineVersionStep =
         { [<JsonPropertyName("id")>] Id: string
           [<JsonPropertyName("pipelineVersionId")>] PipelineVersionId: string
           [<JsonPropertyName("stepOrder")>] StepOrder: int
@@ -2132,9 +2132,9 @@ module Parameters =
     /// A record representing a new row in the table `cfg__pipeline_versions`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type NewCfgPipelineVersions =
+    type NewPipelineVersion =
         { [<JsonPropertyName("id")>] Id: string
           [<JsonPropertyName("pipelineId")>] PipelineId: string
           [<JsonPropertyName("version")>] Version: int
@@ -2156,9 +2156,9 @@ module Parameters =
     /// A record representing a new row in the table `cfg__pipelines`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type NewCfgPipelines =
+    type NewPipeline =
         { [<JsonPropertyName("id")>] Id: string
           [<JsonPropertyName("userGroupId")>] UserGroupId: string
           [<JsonPropertyName("name")>] Name: string
@@ -2176,9 +2176,9 @@ module Parameters =
     /// A record representing a new row in the table `cfg__user_groups`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type NewCfgUserGroups =
+    type NewUserGroup =
         { [<JsonPropertyName("id")>] Id: string
           [<JsonPropertyName("name")>] Name: string
           [<JsonPropertyName("createdOn")>] CreatedOn: DateTime
@@ -2194,9 +2194,9 @@ module Parameters =
     /// A record representing a new row in the table `cfg__users`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type NewCfgUsers =
+    type NewUser =
         { [<JsonPropertyName("id")>] Id: string
           [<JsonPropertyName("name")>] Name: string }
     
@@ -2208,9 +2208,9 @@ module Parameters =
     /// A record representing a new row in the table `cfg_classifications`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type NewCfgClassifications =
+    type NewClassification =
         { [<JsonPropertyName("id")>] Id: string
           [<JsonPropertyName("name")>] Name: string
           [<JsonPropertyName("description")>] Description: string option
@@ -2228,9 +2228,9 @@ module Parameters =
     /// A record representing a new row in the table `cfg_file_types`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type NewCfgFileTypes =
+    type NewFileType =
         { [<JsonPropertyName("id")>] Id: string option
           [<JsonPropertyName("name")>] Name: string
           [<JsonPropertyName("description")>] Description: string
@@ -2248,9 +2248,9 @@ module Parameters =
     /// A record representing a new row in the table `cfg_metadata`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type NewCfgMetadata =
+    type NewMetadataItem =
         { [<JsonPropertyName("itemKey")>] ItemKey: string
           [<JsonPropertyName("itemValue")>] ItemValue: string
           [<JsonPropertyName("lastUpdated")>] LastUpdated: DateTime }
@@ -2264,9 +2264,9 @@ module Parameters =
     /// A record representing a new row in the table `cfg_tags`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type NewCfgTags =
+    type NewTag =
         { [<JsonPropertyName("tag")>] Tag: string }
     
         static member Blank() =
@@ -2276,9 +2276,9 @@ module Parameters =
     /// A record representing a new row in the table `core__pipeline_run_artifact_classifications`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type NewCorePipelineRunArtifactClassifications =
+    type NewPipelineRunArtifactClassification =
         { [<JsonPropertyName("artifactId")>] ArtifactId: string
           [<JsonPropertyName("classificationId")>] ClassificationId: string
           [<JsonPropertyName("lastUpdated")>] LastUpdated: DateTime }
@@ -2292,9 +2292,9 @@ module Parameters =
     /// A record representing a new row in the table `core__pipeline_run_artifact_metadata`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type NewCorePipelineRunArtifactMetadata =
+    type NewPipelineRunArtifactMetadataItem =
         { [<JsonPropertyName("artifactId")>] ArtifactId: string
           [<JsonPropertyName("itemKey")>] ItemKey: string
           [<JsonPropertyName("itemValue")>] ItemValue: string
@@ -2310,9 +2310,9 @@ module Parameters =
     /// A record representing a new row in the table `core__pipeline_run_artifact_tags`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type NewCorePipelineRunArtifactTags =
+    type NewPipelineRunArtifactTag =
         { [<JsonPropertyName("artifactId")>] ArtifactId: string
           [<JsonPropertyName("tag")>] Tag: string
           [<JsonPropertyName("lastUpdated")>] LastUpdated: DateTime }
@@ -2326,9 +2326,9 @@ module Parameters =
     /// A record representing a new row in the table `core__pipeline_run_artifacts`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type NewCorePipelineRunArtifacts =
+    type NewPipelineRunArtifact =
         { [<JsonPropertyName("id")>] Id: string
           [<JsonPropertyName("pipelineRunId")>] PipelineRunId: string
           [<JsonPropertyName("name")>] Name: string
@@ -2350,9 +2350,9 @@ module Parameters =
     /// A record representing a new row in the table `core__pipeline_run_data_store`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type NewCorePipelineRunDataStore =
+    type NewPipelineRunDataStoreItem =
         { [<JsonPropertyName("piplineRunId")>] PiplineRunId: string
           [<JsonPropertyName("itemKey")>] ItemKey: string
           [<JsonPropertyName("itemValueBlob")>] ItemValueBlob: BlobField
@@ -2370,9 +2370,9 @@ module Parameters =
     /// A record representing a new row in the table `core__pipeline_run_key_values`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type NewCorePipelineRunKeyValues =
+    type NewPipelineRunKeyValue =
         { [<JsonPropertyName("pipelineRunId")>] PipelineRunId: string option
           [<JsonPropertyName("itemKey")>] ItemKey: string
           [<JsonPropertyName("itemValue")>] ItemValue: string
@@ -2388,9 +2388,9 @@ module Parameters =
     /// A record representing a new row in the table `core__pipeline_run_logs`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type NewCorePipelineRunLogs =
+    type NewPipelineRunLogItem =
         { [<JsonPropertyName("pipelineRunId")>] PipelineRunId: int64
           [<JsonPropertyName("itemDate")>] ItemDate: string
           [<JsonPropertyName("level")>] Level: string
@@ -2408,9 +2408,9 @@ module Parameters =
     /// A record representing a new row in the table `core__pipeline_run_paths`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type NewCorePipelineRunPaths =
+    type NewPipelineRunPath =
         { [<JsonPropertyName("pipelineRunId")>] PipelineRunId: string
           [<JsonPropertyName("id")>] Id: string
           [<JsonPropertyName("path")>] Path: string
@@ -2426,9 +2426,9 @@ module Parameters =
     /// A record representing a new row in the table `core__pipeline_run_resource_classifications`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type NewCorePipelineRunResourceClassifications =
+    type NewPipelineRunResourceClassification =
         { [<JsonPropertyName("resourceId")>] ResourceId: string
           [<JsonPropertyName("classificationId")>] ClassificationId: string
           [<JsonPropertyName("lastUpdated")>] LastUpdated: DateTime }
@@ -2442,7 +2442,7 @@ module Parameters =
     /// A record representing a new row in the table `core__pipeline_run_resource_metadata`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     type NewCorePipelineRunResourceMetadata =
         { [<JsonPropertyName("resourceId")>] ResourceId: string
@@ -2460,9 +2460,9 @@ module Parameters =
     /// A record representing a new row in the table `core__pipeline_run_resource_tags`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type NewCorePipelineRunResourceTags =
+    type NewPipelineRunResourceTag =
         { [<JsonPropertyName("resourceId")>] ResourceId: string
           [<JsonPropertyName("tag")>] Tag: string
           [<JsonPropertyName("lastUpdated")>] LastUpdated: DateTime }
@@ -2476,9 +2476,9 @@ module Parameters =
     /// A record representing a new row in the table `core__pipeline_run_resources`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type NewCorePipelineRunResources =
+    type NewPipelineRunResource =
         { [<JsonPropertyName("id")>] Id: string
           [<JsonPropertyName("pipelineRunId")>] PipelineRunId: string
           [<JsonPropertyName("name")>] Name: string
@@ -2500,9 +2500,9 @@ module Parameters =
     /// A record representing a new row in the table `core__pipeline_run_results`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type NewCorePipelineRunResults =
+    type NewPipelineRunResult =
         { [<JsonPropertyName("pipelineRunId")>] PipelineRunId: string option
           [<JsonPropertyName("result")>] Result: string option
           [<JsonPropertyName("startedOn")>] StartedOn: string option
@@ -2520,9 +2520,9 @@ module Parameters =
     /// A record representing a new row in the table `core__pipeline_run_step_results`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type NewCorePipelineRunStepResults =
+    type NewPipelineRunStepResult =
         { [<JsonPropertyName("runId")>] RunId: string
           [<JsonPropertyName("stepId")>] StepId: string
           [<JsonPropertyName("stepOrder")>] StepOrder: int
@@ -2548,9 +2548,9 @@ module Parameters =
     /// A record representing a new row in the table `core__pipeline_runs`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type NewCorePipelineRuns =
+    type NewPipelineRun =
         { [<JsonPropertyName("id")>] Id: string
           [<JsonPropertyName("pipelineVersionId")>] PipelineVersionId: string
           [<JsonPropertyName("startedOn")>] StartedOn: string
@@ -2566,9 +2566,9 @@ module Parameters =
     /// A record representing a new row in the table `store__artifact_version_classifications`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type NewStoreArtifactVersionClassifications =
+    type NewArtifactVersionClassification =
         { [<JsonPropertyName("artifactId")>] ArtifactId: string option
           [<JsonPropertyName("classification")>] Classification: string
           [<JsonPropertyName("lastUpdated")>] LastUpdated: DateTime }
@@ -2582,9 +2582,9 @@ module Parameters =
     /// A record representing a new row in the table `store__artifact_version_metadata`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type NewStoreArtifactVersionMetadata =
+    type NewArtifactVersionMetadataItem =
         { [<JsonPropertyName("artifactVersionId")>] ArtifactVersionId: string
           [<JsonPropertyName("itemKey")>] ItemKey: string
           [<JsonPropertyName("itemValue")>] ItemValue: string
@@ -2600,9 +2600,9 @@ module Parameters =
     /// A record representing a new row in the table `store__artifact_version_tags`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type NewStoreArtifactVersionTags =
+    type NewArtifactVersionTag =
         { [<JsonPropertyName("artifactVersionId")>] ArtifactVersionId: string option
           [<JsonPropertyName("tag")>] Tag: string }
     
@@ -2614,9 +2614,9 @@ module Parameters =
     /// A record representing a new row in the table `store__artifact_versions`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type NewStoreArtifactVersions =
+    type NewArtifactVersion =
         { [<JsonPropertyName("id")>] Id: string
           [<JsonPropertyName("artifactId")>] ArtifactId: string
           [<JsonPropertyName("version")>] Version: int
@@ -2642,9 +2642,9 @@ module Parameters =
     /// A record representing a new row in the table `store__artifacts`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type NewStoreArtifacts =
+    type NewArtifact =
         { [<JsonPropertyName("id")>] Id: string
           [<JsonPropertyName("createdOn")>] CreatedOn: DateTime }
     
@@ -2656,9 +2656,9 @@ module Parameters =
     /// A record representing a new row in the table `store__key_values`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type NewStoreKeyValues =
+    type NewKeyValue =
         { [<JsonPropertyName("itemKey")>] ItemKey: string option
           [<JsonPropertyName("itemValue")>] ItemValue: string option
           [<JsonPropertyName("lastUpdated")>] LastUpdated: DateTime }
@@ -2672,9 +2672,9 @@ module Parameters =
     /// A record representing a new row in the table `store__resource_version_classifications`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type NewStoreResourceVersionClassifications =
+    type NewResourceVersionClassification =
         { [<JsonPropertyName("resourceId")>] ResourceId: string option
           [<JsonPropertyName("classification")>] Classification: string
           [<JsonPropertyName("lastUpdated")>] LastUpdated: DateTime }
@@ -2688,9 +2688,9 @@ module Parameters =
     /// A record representing a new row in the table `store__resource_version_metadata`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type NewStoreResourceVersionMetadata =
+    type NewResourceVersionMetadataItem =
         { [<JsonPropertyName("resourceVersionId")>] ResourceVersionId: string
           [<JsonPropertyName("itemKey")>] ItemKey: string
           [<JsonPropertyName("itemValue")>] ItemValue: string
@@ -2706,9 +2706,9 @@ module Parameters =
     /// A record representing a new row in the table `store__resource_version_tags`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type NewStoreResourceVersionTags =
+    type NewArtifact =
         { [<JsonPropertyName("resourceVersionId")>] ResourceVersionId: string option
           [<JsonPropertyName("tag")>] Tag: string }
     
@@ -2720,9 +2720,9 @@ module Parameters =
     /// A record representing a new row in the table `store__resource_versions`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type NewStoreResourceVersions =
+    type NewResourceVersion =
         { [<JsonPropertyName("id")>] Id: string
           [<JsonPropertyName("resourceId")>] ResourceId: string
           [<JsonPropertyName("version")>] Version: int
@@ -2748,9 +2748,9 @@ module Parameters =
     /// A record representing a new row in the table `store__resources`.
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
-    type NewStoreResources =
+    type NewResource =
         { [<JsonPropertyName("id")>] Id: string
           [<JsonPropertyName("createdOn")>] CreatedOn: DateTime }
     
@@ -2759,7 +2759,7 @@ module Parameters =
               CreatedOn = DateTime.UtcNow }
     
 /// <remarks>
-/// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+/// This record was generated via Freql.Tools on 06/07/2025 17:21:44
 /// </remarks>
 [<RequireQualifiedAccess>]
 module Operations =
@@ -2767,1497 +2767,1497 @@ module Operations =
     let buildSql (lines: string list) = lines |> String.concat Environment.NewLine
 
     /// <summary>
-    /// Select a `Records.CfgPipelineVersionSteps` from the table `cfg__pipeline_version_steps`.
-    /// Internally this calls `context.SelectSingleAnon&lt;Records.CfgPipelineVersionSteps&gt;` and uses Records.CfgPipelineVersionSteps.SelectSql().
+    /// Select a `Records.PipelineVersionStep` from the table `cfg__pipeline_version_steps`.
+    /// Internally this calls `context.SelectSingleAnon&lt;Records.PipelineVersionStep&gt;` and uses Records.PipelineVersionStep.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCfgPipelineVersionStepsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectPipelineVersionStepRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCfgPipelineVersionStepsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CfgPipelineVersionSteps.SelectSql() ] @ query |> buildSql
-        context.SelectSingleAnon<Records.CfgPipelineVersionSteps>(sql, parameters)
+    let selectPipelineVersionStepRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineVersionStep.SelectSql() ] @ query |> buildSql
+        context.SelectSingleAnon<Records.PipelineVersionStep>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.SelectAnon&lt;Records.CfgPipelineVersionSteps&gt;` and uses Records.CfgPipelineVersionSteps.SelectSql().
+    /// Internally this calls `context.SelectAnon&lt;Records.PipelineVersionStep&gt;` and uses Records.PipelineVersionStep.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCfgPipelineVersionStepsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectPipelineVersionStepRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCfgPipelineVersionStepsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CfgPipelineVersionSteps.SelectSql() ] @ query |> buildSql
-        context.SelectAnon<Records.CfgPipelineVersionSteps>(sql, parameters)
+    let selectPipelineVersionStepRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineVersionStep.SelectSql() ] @ query |> buildSql
+        context.SelectAnon<Records.PipelineVersionStep>(sql, parameters)
     /// <summary>
-    /// Select a `Records.CfgPipelineVersionSteps` from the table `cfg__pipeline_version_steps`.
-    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.CfgPipelineVersionSteps&gt;` and uses Records.CfgPipelineVersionSteps.SelectSql().
+    /// Select a `Records.PipelineVersionStep` from the table `cfg__pipeline_version_steps`.
+    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.PipelineVersionStep&gt;` and uses Records.PipelineVersionStep.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCfgPipelineVersionStepsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectPipelineVersionStepRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCfgPipelineVersionStepsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CfgPipelineVersionSteps.SelectSql() ] @ query |> buildSql
-        context.TrySelectSingleAnon<Records.CfgPipelineVersionSteps>(sql, parameters)
+    let trySelectPipelineVersionStepRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineVersionStep.SelectSql() ] @ query |> buildSql
+        context.TrySelectSingleAnon<Records.PipelineVersionStep>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.TrySelectAnon&lt;Records.CfgPipelineVersionSteps&gt;` and uses Records.CfgPipelineVersionSteps.SelectSql().
+    /// Internally this calls `context.TrySelectAnon&lt;Records.PipelineVersionStep&gt;` and uses Records.PipelineVersionStep.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCfgPipelineVersionStepsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectPipelineVersionStepRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCfgPipelineVersionStepsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CfgPipelineVersionSteps.SelectSql() ] @ query |> buildSql
-        context.TrySelectAnon<Records.CfgPipelineVersionSteps>(sql, parameters)
+    let trySelectPipelineVersionStepRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineVersionStep.SelectSql() ] @ query |> buildSql
+        context.TrySelectAnon<Records.PipelineVersionStep>(sql, parameters)
     
-    let insertCfgPipelineVersionSteps (context: SqliteContext) (parameters: Parameters.NewCfgPipelineVersionSteps) =
+    let insertPipelineVersionStep (context: SqliteContext) (parameters: Parameters.NewPipelineVersionStep) =
         context.Insert("cfg__pipeline_version_steps", parameters)
     
-    let tryInsertCfgPipelineVersionSteps (context: SqliteContext) (parameters: Parameters.NewCfgPipelineVersionSteps) =
+    let tryInsertPipelineVersionStep (context: SqliteContext) (parameters: Parameters.NewPipelineVersionStep) =
         context.TryInsert("cfg__pipeline_version_steps", parameters)
     
     /// <summary>
-    /// Select a `Records.CfgPipelineVersions` from the table `cfg__pipeline_versions`.
-    /// Internally this calls `context.SelectSingleAnon&lt;Records.CfgPipelineVersions&gt;` and uses Records.CfgPipelineVersions.SelectSql().
+    /// Select a `Records.PipelineVersion` from the table `cfg__pipeline_versions`.
+    /// Internally this calls `context.SelectSingleAnon&lt;Records.PipelineVersion&gt;` and uses Records.PipelineVersion.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCfgPipelineVersionsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectPipelineVersionRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCfgPipelineVersionsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CfgPipelineVersions.SelectSql() ] @ query |> buildSql
-        context.SelectSingleAnon<Records.CfgPipelineVersions>(sql, parameters)
+    let selectPipelineVersionRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineVersion.SelectSql() ] @ query |> buildSql
+        context.SelectSingleAnon<Records.PipelineVersion>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.SelectAnon&lt;Records.CfgPipelineVersions&gt;` and uses Records.CfgPipelineVersions.SelectSql().
+    /// Internally this calls `context.SelectAnon&lt;Records.PipelineVersion&gt;` and uses Records.PipelineVersion.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCfgPipelineVersionsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectPipelineVersionRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCfgPipelineVersionsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CfgPipelineVersions.SelectSql() ] @ query |> buildSql
-        context.SelectAnon<Records.CfgPipelineVersions>(sql, parameters)
+    let selectPipelineVersionRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineVersion.SelectSql() ] @ query |> buildSql
+        context.SelectAnon<Records.PipelineVersion>(sql, parameters)
     /// <summary>
-    /// Select a `Records.CfgPipelineVersions` from the table `cfg__pipeline_versions`.
-    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.CfgPipelineVersions&gt;` and uses Records.CfgPipelineVersions.SelectSql().
+    /// Select a `Records.PipelineVersion` from the table `cfg__pipeline_versions`.
+    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.PipelineVersion&gt;` and uses Records.PipelineVersion.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCfgPipelineVersionsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectPipelineVersionRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCfgPipelineVersionsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CfgPipelineVersions.SelectSql() ] @ query |> buildSql
-        context.TrySelectSingleAnon<Records.CfgPipelineVersions>(sql, parameters)
+    let trySelectPipelineVersionRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineVersion.SelectSql() ] @ query |> buildSql
+        context.TrySelectSingleAnon<Records.PipelineVersion>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.TrySelectAnon&lt;Records.CfgPipelineVersions&gt;` and uses Records.CfgPipelineVersions.SelectSql().
+    /// Internally this calls `context.TrySelectAnon&lt;Records.PipelineVersion&gt;` and uses Records.PipelineVersion.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCfgPipelineVersionsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectPipelineVersionRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCfgPipelineVersionsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CfgPipelineVersions.SelectSql() ] @ query |> buildSql
-        context.TrySelectAnon<Records.CfgPipelineVersions>(sql, parameters)
+    let trySelectPipelineVersionRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineVersion.SelectSql() ] @ query |> buildSql
+        context.TrySelectAnon<Records.PipelineVersion>(sql, parameters)
     
-    let insertCfgPipelineVersions (context: SqliteContext) (parameters: Parameters.NewCfgPipelineVersions) =
+    let insertPipelineVersion (context: SqliteContext) (parameters: Parameters.NewPipelineVersion) =
         context.Insert("cfg__pipeline_versions", parameters)
     
-    let tryInsertCfgPipelineVersions (context: SqliteContext) (parameters: Parameters.NewCfgPipelineVersions) =
+    let tryInsertPipelineVersion (context: SqliteContext) (parameters: Parameters.NewPipelineVersion) =
         context.TryInsert("cfg__pipeline_versions", parameters)
     
     /// <summary>
-    /// Select a `Records.CfgPipelines` from the table `cfg__pipelines`.
-    /// Internally this calls `context.SelectSingleAnon&lt;Records.CfgPipelines&gt;` and uses Records.CfgPipelines.SelectSql().
+    /// Select a `Records.Pipeline` from the table `cfg__pipelines`.
+    /// Internally this calls `context.SelectSingleAnon&lt;Records.Pipeline&gt;` and uses Records.Pipeline.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCfgPipelinesRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectPipelineRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCfgPipelinesRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CfgPipelines.SelectSql() ] @ query |> buildSql
-        context.SelectSingleAnon<Records.CfgPipelines>(sql, parameters)
+    let selectPipelineRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.Pipeline.SelectSql() ] @ query |> buildSql
+        context.SelectSingleAnon<Records.Pipeline>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.SelectAnon&lt;Records.CfgPipelines&gt;` and uses Records.CfgPipelines.SelectSql().
+    /// Internally this calls `context.SelectAnon&lt;Records.Pipeline&gt;` and uses Records.Pipeline.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCfgPipelinesRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectPipelineRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCfgPipelinesRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CfgPipelines.SelectSql() ] @ query |> buildSql
-        context.SelectAnon<Records.CfgPipelines>(sql, parameters)
+    let selectPipelineRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.Pipeline.SelectSql() ] @ query |> buildSql
+        context.SelectAnon<Records.Pipeline>(sql, parameters)
     /// <summary>
-    /// Select a `Records.CfgPipelines` from the table `cfg__pipelines`.
-    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.CfgPipelines&gt;` and uses Records.CfgPipelines.SelectSql().
+    /// Select a `Records.Pipeline` from the table `cfg__pipelines`.
+    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.Pipeline&gt;` and uses Records.Pipeline.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCfgPipelinesRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectPipelineRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCfgPipelinesRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CfgPipelines.SelectSql() ] @ query |> buildSql
-        context.TrySelectSingleAnon<Records.CfgPipelines>(sql, parameters)
+    let trySelectPipelineRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.Pipeline.SelectSql() ] @ query |> buildSql
+        context.TrySelectSingleAnon<Records.Pipeline>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.TrySelectAnon&lt;Records.CfgPipelines&gt;` and uses Records.CfgPipelines.SelectSql().
+    /// Internally this calls `context.TrySelectAnon&lt;Records.Pipeline&gt;` and uses Records.Pipeline.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCfgPipelinesRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectPipelineRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCfgPipelinesRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CfgPipelines.SelectSql() ] @ query |> buildSql
-        context.TrySelectAnon<Records.CfgPipelines>(sql, parameters)
+    let trySelectPipelineRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.Pipeline.SelectSql() ] @ query |> buildSql
+        context.TrySelectAnon<Records.Pipeline>(sql, parameters)
     
-    let insertCfgPipelines (context: SqliteContext) (parameters: Parameters.NewCfgPipelines) =
+    let insertPipeline (context: SqliteContext) (parameters: Parameters.NewPipeline) =
         context.Insert("cfg__pipelines", parameters)
     
-    let tryInsertCfgPipelines (context: SqliteContext) (parameters: Parameters.NewCfgPipelines) =
+    let tryInsertPipeline (context: SqliteContext) (parameters: Parameters.NewPipeline) =
         context.TryInsert("cfg__pipelines", parameters)
     
     /// <summary>
-    /// Select a `Records.CfgUserGroups` from the table `cfg__user_groups`.
-    /// Internally this calls `context.SelectSingleAnon&lt;Records.CfgUserGroups&gt;` and uses Records.CfgUserGroups.SelectSql().
+    /// Select a `Records.UserGroup` from the table `cfg__user_groups`.
+    /// Internally this calls `context.SelectSingleAnon&lt;Records.UserGroup&gt;` and uses Records.UserGroup.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCfgUserGroupsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectUserGroupRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCfgUserGroupsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CfgUserGroups.SelectSql() ] @ query |> buildSql
-        context.SelectSingleAnon<Records.CfgUserGroups>(sql, parameters)
+    let selectUserGroupRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.UserGroup.SelectSql() ] @ query |> buildSql
+        context.SelectSingleAnon<Records.UserGroup>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.SelectAnon&lt;Records.CfgUserGroups&gt;` and uses Records.CfgUserGroups.SelectSql().
+    /// Internally this calls `context.SelectAnon&lt;Records.UserGroup&gt;` and uses Records.UserGroup.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCfgUserGroupsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectUserGroupRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCfgUserGroupsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CfgUserGroups.SelectSql() ] @ query |> buildSql
-        context.SelectAnon<Records.CfgUserGroups>(sql, parameters)
+    let selectUserGroupRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.UserGroup.SelectSql() ] @ query |> buildSql
+        context.SelectAnon<Records.UserGroup>(sql, parameters)
     /// <summary>
-    /// Select a `Records.CfgUserGroups` from the table `cfg__user_groups`.
-    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.CfgUserGroups&gt;` and uses Records.CfgUserGroups.SelectSql().
+    /// Select a `Records.UserGroup` from the table `cfg__user_groups`.
+    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.UserGroup&gt;` and uses Records.UserGroup.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCfgUserGroupsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectUserGroupRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCfgUserGroupsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CfgUserGroups.SelectSql() ] @ query |> buildSql
-        context.TrySelectSingleAnon<Records.CfgUserGroups>(sql, parameters)
+    let trySelectUserGroupRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.UserGroup.SelectSql() ] @ query |> buildSql
+        context.TrySelectSingleAnon<Records.UserGroup>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.TrySelectAnon&lt;Records.CfgUserGroups&gt;` and uses Records.CfgUserGroups.SelectSql().
+    /// Internally this calls `context.TrySelectAnon&lt;Records.UserGroup&gt;` and uses Records.UserGroup.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCfgUserGroupsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectUserGroupRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCfgUserGroupsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CfgUserGroups.SelectSql() ] @ query |> buildSql
-        context.TrySelectAnon<Records.CfgUserGroups>(sql, parameters)
+    let trySelectUserGroupRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.UserGroup.SelectSql() ] @ query |> buildSql
+        context.TrySelectAnon<Records.UserGroup>(sql, parameters)
     
-    let insertCfgUserGroups (context: SqliteContext) (parameters: Parameters.NewCfgUserGroups) =
+    let insertUserGroup (context: SqliteContext) (parameters: Parameters.NewUserGroup) =
         context.Insert("cfg__user_groups", parameters)
     
-    let tryInsertCfgUserGroups (context: SqliteContext) (parameters: Parameters.NewCfgUserGroups) =
+    let tryInsertUserGroup (context: SqliteContext) (parameters: Parameters.NewUserGroup) =
         context.TryInsert("cfg__user_groups", parameters)
     
     /// <summary>
-    /// Select a `Records.CfgUsers` from the table `cfg__users`.
-    /// Internally this calls `context.SelectSingleAnon&lt;Records.CfgUsers&gt;` and uses Records.CfgUsers.SelectSql().
+    /// Select a `Records.User` from the table `cfg__users`.
+    /// Internally this calls `context.SelectSingleAnon&lt;Records.User&gt;` and uses Records.User.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCfgUsersRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectUserRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCfgUsersRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CfgUsers.SelectSql() ] @ query |> buildSql
-        context.SelectSingleAnon<Records.CfgUsers>(sql, parameters)
+    let selectUserRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.User.SelectSql() ] @ query |> buildSql
+        context.SelectSingleAnon<Records.User>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.SelectAnon&lt;Records.CfgUsers&gt;` and uses Records.CfgUsers.SelectSql().
+    /// Internally this calls `context.SelectAnon&lt;Records.User&gt;` and uses Records.User.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCfgUsersRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectUserRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCfgUsersRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CfgUsers.SelectSql() ] @ query |> buildSql
-        context.SelectAnon<Records.CfgUsers>(sql, parameters)
+    let selectUserRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.User.SelectSql() ] @ query |> buildSql
+        context.SelectAnon<Records.User>(sql, parameters)
     /// <summary>
-    /// Select a `Records.CfgUsers` from the table `cfg__users`.
-    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.CfgUsers&gt;` and uses Records.CfgUsers.SelectSql().
+    /// Select a `Records.User` from the table `cfg__users`.
+    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.User&gt;` and uses Records.User.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCfgUsersRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectUserRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCfgUsersRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CfgUsers.SelectSql() ] @ query |> buildSql
-        context.TrySelectSingleAnon<Records.CfgUsers>(sql, parameters)
+    let trySelectUserRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.User.SelectSql() ] @ query |> buildSql
+        context.TrySelectSingleAnon<Records.User>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.TrySelectAnon&lt;Records.CfgUsers&gt;` and uses Records.CfgUsers.SelectSql().
+    /// Internally this calls `context.TrySelectAnon&lt;Records.User&gt;` and uses Records.User.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCfgUsersRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectUserRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCfgUsersRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CfgUsers.SelectSql() ] @ query |> buildSql
-        context.TrySelectAnon<Records.CfgUsers>(sql, parameters)
+    let trySelectUserRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.User.SelectSql() ] @ query |> buildSql
+        context.TrySelectAnon<Records.User>(sql, parameters)
     
-    let insertCfgUsers (context: SqliteContext) (parameters: Parameters.NewCfgUsers) =
+    let insertUser (context: SqliteContext) (parameters: Parameters.NewUser) =
         context.Insert("cfg__users", parameters)
     
-    let tryInsertCfgUsers (context: SqliteContext) (parameters: Parameters.NewCfgUsers) =
+    let tryInsertUser (context: SqliteContext) (parameters: Parameters.NewUser) =
         context.TryInsert("cfg__users", parameters)
     
     /// <summary>
-    /// Select a `Records.CfgClassifications` from the table `cfg_classifications`.
-    /// Internally this calls `context.SelectSingleAnon&lt;Records.CfgClassifications&gt;` and uses Records.CfgClassifications.SelectSql().
+    /// Select a `Records.Classification` from the table `cfg_classifications`.
+    /// Internally this calls `context.SelectSingleAnon&lt;Records.Classification&gt;` and uses Records.Classification.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCfgClassificationsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectClassificationRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCfgClassificationsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CfgClassifications.SelectSql() ] @ query |> buildSql
-        context.SelectSingleAnon<Records.CfgClassifications>(sql, parameters)
+    let selectClassificationRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.Classification.SelectSql() ] @ query |> buildSql
+        context.SelectSingleAnon<Records.Classification>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.SelectAnon&lt;Records.CfgClassifications&gt;` and uses Records.CfgClassifications.SelectSql().
+    /// Internally this calls `context.SelectAnon&lt;Records.Classification&gt;` and uses Records.Classification.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCfgClassificationsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectClassificationRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCfgClassificationsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CfgClassifications.SelectSql() ] @ query |> buildSql
-        context.SelectAnon<Records.CfgClassifications>(sql, parameters)
+    let selectClassificationRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.Classification.SelectSql() ] @ query |> buildSql
+        context.SelectAnon<Records.Classification>(sql, parameters)
     /// <summary>
-    /// Select a `Records.CfgClassifications` from the table `cfg_classifications`.
-    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.CfgClassifications&gt;` and uses Records.CfgClassifications.SelectSql().
+    /// Select a `Records.Classification` from the table `cfg_classifications`.
+    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.Classification&gt;` and uses Records.Classification.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCfgClassificationsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectClassificationRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCfgClassificationsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CfgClassifications.SelectSql() ] @ query |> buildSql
-        context.TrySelectSingleAnon<Records.CfgClassifications>(sql, parameters)
+    let trySelectClassificationRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.Classification.SelectSql() ] @ query |> buildSql
+        context.TrySelectSingleAnon<Records.Classification>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.TrySelectAnon&lt;Records.CfgClassifications&gt;` and uses Records.CfgClassifications.SelectSql().
+    /// Internally this calls `context.TrySelectAnon&lt;Records.Classification&gt;` and uses Records.Classification.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCfgClassificationsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectClassificationRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCfgClassificationsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CfgClassifications.SelectSql() ] @ query |> buildSql
-        context.TrySelectAnon<Records.CfgClassifications>(sql, parameters)
+    let trySelectClassificationRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.Classification.SelectSql() ] @ query |> buildSql
+        context.TrySelectAnon<Records.Classification>(sql, parameters)
     
-    let insertCfgClassifications (context: SqliteContext) (parameters: Parameters.NewCfgClassifications) =
+    let insertClassification (context: SqliteContext) (parameters: Parameters.NewClassification) =
         context.Insert("cfg_classifications", parameters)
     
-    let tryInsertCfgClassifications (context: SqliteContext) (parameters: Parameters.NewCfgClassifications) =
+    let tryInsertClassification (context: SqliteContext) (parameters: Parameters.NewClassification) =
         context.TryInsert("cfg_classifications", parameters)
     
     /// <summary>
-    /// Select a `Records.CfgFileTypes` from the table `cfg_file_types`.
-    /// Internally this calls `context.SelectSingleAnon&lt;Records.CfgFileTypes&gt;` and uses Records.CfgFileTypes.SelectSql().
+    /// Select a `Records.FileType` from the table `cfg_file_types`.
+    /// Internally this calls `context.SelectSingleAnon&lt;Records.FileType&gt;` and uses Records.FileType.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCfgFileTypesRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectFileTypeRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCfgFileTypesRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CfgFileTypes.SelectSql() ] @ query |> buildSql
-        context.SelectSingleAnon<Records.CfgFileTypes>(sql, parameters)
+    let selectFileTypeRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.FileType.SelectSql() ] @ query |> buildSql
+        context.SelectSingleAnon<Records.FileType>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.SelectAnon&lt;Records.CfgFileTypes&gt;` and uses Records.CfgFileTypes.SelectSql().
+    /// Internally this calls `context.SelectAnon&lt;Records.FileType&gt;` and uses Records.FileType.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCfgFileTypesRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectFileTypeRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCfgFileTypesRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CfgFileTypes.SelectSql() ] @ query |> buildSql
-        context.SelectAnon<Records.CfgFileTypes>(sql, parameters)
+    let selectFileTypeRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.FileType.SelectSql() ] @ query |> buildSql
+        context.SelectAnon<Records.FileType>(sql, parameters)
     /// <summary>
-    /// Select a `Records.CfgFileTypes` from the table `cfg_file_types`.
-    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.CfgFileTypes&gt;` and uses Records.CfgFileTypes.SelectSql().
+    /// Select a `Records.FileType` from the table `cfg_file_types`.
+    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.FileType&gt;` and uses Records.FileType.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCfgFileTypesRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectFileTypeRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCfgFileTypesRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CfgFileTypes.SelectSql() ] @ query |> buildSql
-        context.TrySelectSingleAnon<Records.CfgFileTypes>(sql, parameters)
+    let trySelectFileTypeRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.FileType.SelectSql() ] @ query |> buildSql
+        context.TrySelectSingleAnon<Records.FileType>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.TrySelectAnon&lt;Records.CfgFileTypes&gt;` and uses Records.CfgFileTypes.SelectSql().
+    /// Internally this calls `context.TrySelectAnon&lt;Records.FileType&gt;` and uses Records.FileType.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCfgFileTypesRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectFileTypeRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCfgFileTypesRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CfgFileTypes.SelectSql() ] @ query |> buildSql
-        context.TrySelectAnon<Records.CfgFileTypes>(sql, parameters)
+    let trySelectFileTypeRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.FileType.SelectSql() ] @ query |> buildSql
+        context.TrySelectAnon<Records.FileType>(sql, parameters)
     
-    let insertCfgFileTypes (context: SqliteContext) (parameters: Parameters.NewCfgFileTypes) =
+    let insertFileType (context: SqliteContext) (parameters: Parameters.NewFileType) =
         context.Insert("cfg_file_types", parameters)
     
-    let tryInsertCfgFileTypes (context: SqliteContext) (parameters: Parameters.NewCfgFileTypes) =
+    let tryInsertFileType (context: SqliteContext) (parameters: Parameters.NewFileType) =
         context.TryInsert("cfg_file_types", parameters)
     
     /// <summary>
-    /// Select a `Records.CfgMetadata` from the table `cfg_metadata`.
-    /// Internally this calls `context.SelectSingleAnon&lt;Records.CfgMetadata&gt;` and uses Records.CfgMetadata.SelectSql().
+    /// Select a `Records.MetadataItem` from the table `cfg_metadata`.
+    /// Internally this calls `context.SelectSingleAnon&lt;Records.MetadataItem&gt;` and uses Records.MetadataItem.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCfgMetadataRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectMetadataItemRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCfgMetadataRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CfgMetadata.SelectSql() ] @ query |> buildSql
-        context.SelectSingleAnon<Records.CfgMetadata>(sql, parameters)
+    let selectMetadataItemRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.MetadataItem.SelectSql() ] @ query |> buildSql
+        context.SelectSingleAnon<Records.MetadataItem>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.SelectAnon&lt;Records.CfgMetadata&gt;` and uses Records.CfgMetadata.SelectSql().
+    /// Internally this calls `context.SelectAnon&lt;Records.MetadataItem&gt;` and uses Records.MetadataItem.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCfgMetadataRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectMetadataItemRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCfgMetadataRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CfgMetadata.SelectSql() ] @ query |> buildSql
-        context.SelectAnon<Records.CfgMetadata>(sql, parameters)
+    let selectMetadataItemRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.MetadataItem.SelectSql() ] @ query |> buildSql
+        context.SelectAnon<Records.MetadataItem>(sql, parameters)
     /// <summary>
-    /// Select a `Records.CfgMetadata` from the table `cfg_metadata`.
-    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.CfgMetadata&gt;` and uses Records.CfgMetadata.SelectSql().
+    /// Select a `Records.MetadataItem` from the table `cfg_metadata`.
+    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.MetadataItem&gt;` and uses Records.MetadataItem.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCfgMetadataRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectMetadataItemRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCfgMetadataRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CfgMetadata.SelectSql() ] @ query |> buildSql
-        context.TrySelectSingleAnon<Records.CfgMetadata>(sql, parameters)
+    let trySelectMetadataItemRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.MetadataItem.SelectSql() ] @ query |> buildSql
+        context.TrySelectSingleAnon<Records.MetadataItem>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.TrySelectAnon&lt;Records.CfgMetadata&gt;` and uses Records.CfgMetadata.SelectSql().
+    /// Internally this calls `context.TrySelectAnon&lt;Records.MetadataItem&gt;` and uses Records.MetadataItem.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCfgMetadataRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectMetadataItemRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCfgMetadataRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CfgMetadata.SelectSql() ] @ query |> buildSql
-        context.TrySelectAnon<Records.CfgMetadata>(sql, parameters)
+    let trySelectMetadataItemRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.MetadataItem.SelectSql() ] @ query |> buildSql
+        context.TrySelectAnon<Records.MetadataItem>(sql, parameters)
     
-    let insertCfgMetadata (context: SqliteContext) (parameters: Parameters.NewCfgMetadata) =
+    let insertMetadataItem (context: SqliteContext) (parameters: Parameters.NewMetadataItem) =
         context.Insert("cfg_metadata", parameters)
     
-    let tryInsertCfgMetadata (context: SqliteContext) (parameters: Parameters.NewCfgMetadata) =
+    let tryInsertMetadataItem (context: SqliteContext) (parameters: Parameters.NewMetadataItem) =
         context.TryInsert("cfg_metadata", parameters)
     
     /// <summary>
-    /// Select a `Records.CfgTags` from the table `cfg_tags`.
-    /// Internally this calls `context.SelectSingleAnon&lt;Records.CfgTags&gt;` and uses Records.CfgTags.SelectSql().
+    /// Select a `Records.Tag` from the table `cfg_tags`.
+    /// Internally this calls `context.SelectSingleAnon&lt;Records.Tag&gt;` and uses Records.Tag.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCfgTagsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectTagRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCfgTagsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CfgTags.SelectSql() ] @ query |> buildSql
-        context.SelectSingleAnon<Records.CfgTags>(sql, parameters)
+    let selectTagRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.Tag.SelectSql() ] @ query |> buildSql
+        context.SelectSingleAnon<Records.Tag>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.SelectAnon&lt;Records.CfgTags&gt;` and uses Records.CfgTags.SelectSql().
+    /// Internally this calls `context.SelectAnon&lt;Records.Tag&gt;` and uses Records.Tag.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCfgTagsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectTagRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCfgTagsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CfgTags.SelectSql() ] @ query |> buildSql
-        context.SelectAnon<Records.CfgTags>(sql, parameters)
+    let selectTagRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.Tag.SelectSql() ] @ query |> buildSql
+        context.SelectAnon<Records.Tag>(sql, parameters)
     /// <summary>
-    /// Select a `Records.CfgTags` from the table `cfg_tags`.
-    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.CfgTags&gt;` and uses Records.CfgTags.SelectSql().
+    /// Select a `Records.Tag` from the table `cfg_tags`.
+    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.Tag&gt;` and uses Records.Tag.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCfgTagsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectTagRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCfgTagsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CfgTags.SelectSql() ] @ query |> buildSql
-        context.TrySelectSingleAnon<Records.CfgTags>(sql, parameters)
+    let trySelectTagRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.Tag.SelectSql() ] @ query |> buildSql
+        context.TrySelectSingleAnon<Records.Tag>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.TrySelectAnon&lt;Records.CfgTags&gt;` and uses Records.CfgTags.SelectSql().
+    /// Internally this calls `context.TrySelectAnon&lt;Records.Tag&gt;` and uses Records.Tag.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCfgTagsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectTagRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCfgTagsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CfgTags.SelectSql() ] @ query |> buildSql
-        context.TrySelectAnon<Records.CfgTags>(sql, parameters)
+    let trySelectTagRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.Tag.SelectSql() ] @ query |> buildSql
+        context.TrySelectAnon<Records.Tag>(sql, parameters)
     
-    let insertCfgTags (context: SqliteContext) (parameters: Parameters.NewCfgTags) =
+    let insertTag (context: SqliteContext) (parameters: Parameters.NewTag) =
         context.Insert("cfg_tags", parameters)
     
-    let tryInsertCfgTags (context: SqliteContext) (parameters: Parameters.NewCfgTags) =
+    let tryInsertTag (context: SqliteContext) (parameters: Parameters.NewTag) =
         context.TryInsert("cfg_tags", parameters)
     
     /// <summary>
-    /// Select a `Records.CorePipelineRunArtifactClassifications` from the table `core__pipeline_run_artifact_classifications`.
-    /// Internally this calls `context.SelectSingleAnon&lt;Records.CorePipelineRunArtifactClassifications&gt;` and uses Records.CorePipelineRunArtifactClassifications.SelectSql().
+    /// Select a `Records.PipelineRunArtifactClassification` from the table `core__pipeline_run_artifact_classifications`.
+    /// Internally this calls `context.SelectSingleAnon&lt;Records.PipelineRunArtifactClassification&gt;` and uses Records.PipelineRunArtifactClassification.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCorePipelineRunArtifactClassificationsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectPipelineRunArtifactClassificationRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCorePipelineRunArtifactClassificationsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunArtifactClassifications.SelectSql() ] @ query |> buildSql
-        context.SelectSingleAnon<Records.CorePipelineRunArtifactClassifications>(sql, parameters)
+    let selectPipelineRunArtifactClassificationRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunArtifactClassification.SelectSql() ] @ query |> buildSql
+        context.SelectSingleAnon<Records.PipelineRunArtifactClassification>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.SelectAnon&lt;Records.CorePipelineRunArtifactClassifications&gt;` and uses Records.CorePipelineRunArtifactClassifications.SelectSql().
+    /// Internally this calls `context.SelectAnon&lt;Records.PipelineRunArtifactClassification&gt;` and uses Records.PipelineRunArtifactClassification.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCorePipelineRunArtifactClassificationsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectPipelineRunArtifactClassificationRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCorePipelineRunArtifactClassificationsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunArtifactClassifications.SelectSql() ] @ query |> buildSql
-        context.SelectAnon<Records.CorePipelineRunArtifactClassifications>(sql, parameters)
+    let selectPipelineRunArtifactClassificationRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunArtifactClassification.SelectSql() ] @ query |> buildSql
+        context.SelectAnon<Records.PipelineRunArtifactClassification>(sql, parameters)
     /// <summary>
-    /// Select a `Records.CorePipelineRunArtifactClassifications` from the table `core__pipeline_run_artifact_classifications`.
-    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.CorePipelineRunArtifactClassifications&gt;` and uses Records.CorePipelineRunArtifactClassifications.SelectSql().
+    /// Select a `Records.PipelineRunArtifactClassification` from the table `core__pipeline_run_artifact_classifications`.
+    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.PipelineRunArtifactClassification&gt;` and uses Records.PipelineRunArtifactClassification.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCorePipelineRunArtifactClassificationsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectPipelineRunArtifactClassificationRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCorePipelineRunArtifactClassificationsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunArtifactClassifications.SelectSql() ] @ query |> buildSql
-        context.TrySelectSingleAnon<Records.CorePipelineRunArtifactClassifications>(sql, parameters)
+    let trySelectPipelineRunArtifactClassificationRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunArtifactClassification.SelectSql() ] @ query |> buildSql
+        context.TrySelectSingleAnon<Records.PipelineRunArtifactClassification>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.TrySelectAnon&lt;Records.CorePipelineRunArtifactClassifications&gt;` and uses Records.CorePipelineRunArtifactClassifications.SelectSql().
+    /// Internally this calls `context.TrySelectAnon&lt;Records.PipelineRunArtifactClassification&gt;` and uses Records.PipelineRunArtifactClassification.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCorePipelineRunArtifactClassificationsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectPipelineRunArtifactClassificationRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCorePipelineRunArtifactClassificationsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunArtifactClassifications.SelectSql() ] @ query |> buildSql
-        context.TrySelectAnon<Records.CorePipelineRunArtifactClassifications>(sql, parameters)
+    let trySelectPipelineRunArtifactClassificationRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunArtifactClassification.SelectSql() ] @ query |> buildSql
+        context.TrySelectAnon<Records.PipelineRunArtifactClassification>(sql, parameters)
     
-    let insertCorePipelineRunArtifactClassifications (context: SqliteContext) (parameters: Parameters.NewCorePipelineRunArtifactClassifications) =
+    let insertPipelineRunArtifactClassification (context: SqliteContext) (parameters: Parameters.NewPipelineRunArtifactClassification) =
         context.Insert("core__pipeline_run_artifact_classifications", parameters)
     
-    let tryInsertCorePipelineRunArtifactClassifications (context: SqliteContext) (parameters: Parameters.NewCorePipelineRunArtifactClassifications) =
+    let tryInsertPipelineRunArtifactClassification (context: SqliteContext) (parameters: Parameters.NewPipelineRunArtifactClassification) =
         context.TryInsert("core__pipeline_run_artifact_classifications", parameters)
     
     /// <summary>
-    /// Select a `Records.CorePipelineRunArtifactMetadata` from the table `core__pipeline_run_artifact_metadata`.
-    /// Internally this calls `context.SelectSingleAnon&lt;Records.CorePipelineRunArtifactMetadata&gt;` and uses Records.CorePipelineRunArtifactMetadata.SelectSql().
+    /// Select a `Records.PipelineRunArtifactMetadataItem` from the table `core__pipeline_run_artifact_metadata`.
+    /// Internally this calls `context.SelectSingleAnon&lt;Records.PipelineRunArtifactMetadataItem&gt;` and uses Records.PipelineRunArtifactMetadataItem.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCorePipelineRunArtifactMetadataRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectPipelineRunArtifactMetadataItemRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCorePipelineRunArtifactMetadataRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunArtifactMetadata.SelectSql() ] @ query |> buildSql
-        context.SelectSingleAnon<Records.CorePipelineRunArtifactMetadata>(sql, parameters)
+    let selectPipelineRunArtifactMetadataItemRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunArtifactMetadataItem.SelectSql() ] @ query |> buildSql
+        context.SelectSingleAnon<Records.PipelineRunArtifactMetadataItem>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.SelectAnon&lt;Records.CorePipelineRunArtifactMetadata&gt;` and uses Records.CorePipelineRunArtifactMetadata.SelectSql().
+    /// Internally this calls `context.SelectAnon&lt;Records.PipelineRunArtifactMetadataItem&gt;` and uses Records.PipelineRunArtifactMetadataItem.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCorePipelineRunArtifactMetadataRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectPipelineRunArtifactMetadataItemRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCorePipelineRunArtifactMetadataRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunArtifactMetadata.SelectSql() ] @ query |> buildSql
-        context.SelectAnon<Records.CorePipelineRunArtifactMetadata>(sql, parameters)
+    let selectPipelineRunArtifactMetadataItemRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunArtifactMetadataItem.SelectSql() ] @ query |> buildSql
+        context.SelectAnon<Records.PipelineRunArtifactMetadataItem>(sql, parameters)
     /// <summary>
-    /// Select a `Records.CorePipelineRunArtifactMetadata` from the table `core__pipeline_run_artifact_metadata`.
-    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.CorePipelineRunArtifactMetadata&gt;` and uses Records.CorePipelineRunArtifactMetadata.SelectSql().
+    /// Select a `Records.PipelineRunArtifactMetadataItem` from the table `core__pipeline_run_artifact_metadata`.
+    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.PipelineRunArtifactMetadataItem&gt;` and uses Records.PipelineRunArtifactMetadataItem.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCorePipelineRunArtifactMetadataRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectPipelineRunArtifactMetadataItemRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCorePipelineRunArtifactMetadataRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunArtifactMetadata.SelectSql() ] @ query |> buildSql
-        context.TrySelectSingleAnon<Records.CorePipelineRunArtifactMetadata>(sql, parameters)
+    let trySelectPipelineRunArtifactMetadataItemRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunArtifactMetadataItem.SelectSql() ] @ query |> buildSql
+        context.TrySelectSingleAnon<Records.PipelineRunArtifactMetadataItem>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.TrySelectAnon&lt;Records.CorePipelineRunArtifactMetadata&gt;` and uses Records.CorePipelineRunArtifactMetadata.SelectSql().
+    /// Internally this calls `context.TrySelectAnon&lt;Records.PipelineRunArtifactMetadataItem&gt;` and uses Records.PipelineRunArtifactMetadataItem.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCorePipelineRunArtifactMetadataRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectPipelineRunArtifactMetadataItemRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCorePipelineRunArtifactMetadataRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunArtifactMetadata.SelectSql() ] @ query |> buildSql
-        context.TrySelectAnon<Records.CorePipelineRunArtifactMetadata>(sql, parameters)
+    let trySelectPipelineRunArtifactMetadataItemRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunArtifactMetadataItem.SelectSql() ] @ query |> buildSql
+        context.TrySelectAnon<Records.PipelineRunArtifactMetadataItem>(sql, parameters)
     
-    let insertCorePipelineRunArtifactMetadata (context: SqliteContext) (parameters: Parameters.NewCorePipelineRunArtifactMetadata) =
+    let insertPipelineRunArtifactMetadataItem (context: SqliteContext) (parameters: Parameters.NewPipelineRunArtifactMetadataItem) =
         context.Insert("core__pipeline_run_artifact_metadata", parameters)
     
-    let tryInsertCorePipelineRunArtifactMetadata (context: SqliteContext) (parameters: Parameters.NewCorePipelineRunArtifactMetadata) =
+    let tryInsertPipelineRunArtifactMetadataItem (context: SqliteContext) (parameters: Parameters.NewPipelineRunArtifactMetadataItem) =
         context.TryInsert("core__pipeline_run_artifact_metadata", parameters)
     
     /// <summary>
-    /// Select a `Records.CorePipelineRunArtifactTags` from the table `core__pipeline_run_artifact_tags`.
-    /// Internally this calls `context.SelectSingleAnon&lt;Records.CorePipelineRunArtifactTags&gt;` and uses Records.CorePipelineRunArtifactTags.SelectSql().
+    /// Select a `Records.PipelineRunArtifactTag` from the table `core__pipeline_run_artifact_tags`.
+    /// Internally this calls `context.SelectSingleAnon&lt;Records.PipelineRunArtifactTag&gt;` and uses Records.PipelineRunArtifactTag.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCorePipelineRunArtifactTagsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectPipelineRunArtifactTagRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCorePipelineRunArtifactTagsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunArtifactTags.SelectSql() ] @ query |> buildSql
-        context.SelectSingleAnon<Records.CorePipelineRunArtifactTags>(sql, parameters)
+    let selectPipelineRunArtifactTagRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunArtifactTag.SelectSql() ] @ query |> buildSql
+        context.SelectSingleAnon<Records.PipelineRunArtifactTag>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.SelectAnon&lt;Records.CorePipelineRunArtifactTags&gt;` and uses Records.CorePipelineRunArtifactTags.SelectSql().
+    /// Internally this calls `context.SelectAnon&lt;Records.PipelineRunArtifactTag&gt;` and uses Records.PipelineRunArtifactTag.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCorePipelineRunArtifactTagsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectPipelineRunArtifactTagRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCorePipelineRunArtifactTagsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunArtifactTags.SelectSql() ] @ query |> buildSql
-        context.SelectAnon<Records.CorePipelineRunArtifactTags>(sql, parameters)
+    let selectPipelineRunArtifactTagRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunArtifactTag.SelectSql() ] @ query |> buildSql
+        context.SelectAnon<Records.PipelineRunArtifactTag>(sql, parameters)
     /// <summary>
-    /// Select a `Records.CorePipelineRunArtifactTags` from the table `core__pipeline_run_artifact_tags`.
-    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.CorePipelineRunArtifactTags&gt;` and uses Records.CorePipelineRunArtifactTags.SelectSql().
+    /// Select a `Records.PipelineRunArtifactTag` from the table `core__pipeline_run_artifact_tags`.
+    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.PipelineRunArtifactTag&gt;` and uses Records.PipelineRunArtifactTag.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCorePipelineRunArtifactTagsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectPipelineRunArtifactTagRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCorePipelineRunArtifactTagsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunArtifactTags.SelectSql() ] @ query |> buildSql
-        context.TrySelectSingleAnon<Records.CorePipelineRunArtifactTags>(sql, parameters)
+    let trySelectPipelineRunArtifactTagRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunArtifactTag.SelectSql() ] @ query |> buildSql
+        context.TrySelectSingleAnon<Records.PipelineRunArtifactTag>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.TrySelectAnon&lt;Records.CorePipelineRunArtifactTags&gt;` and uses Records.CorePipelineRunArtifactTags.SelectSql().
+    /// Internally this calls `context.TrySelectAnon&lt;Records.PipelineRunArtifactTag&gt;` and uses Records.PipelineRunArtifactTag.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCorePipelineRunArtifactTagsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectPipelineRunArtifactTagRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCorePipelineRunArtifactTagsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunArtifactTags.SelectSql() ] @ query |> buildSql
-        context.TrySelectAnon<Records.CorePipelineRunArtifactTags>(sql, parameters)
+    let trySelectPipelineRunArtifactTagRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunArtifactTag.SelectSql() ] @ query |> buildSql
+        context.TrySelectAnon<Records.PipelineRunArtifactTag>(sql, parameters)
     
-    let insertCorePipelineRunArtifactTags (context: SqliteContext) (parameters: Parameters.NewCorePipelineRunArtifactTags) =
+    let insertPipelineRunArtifactTag (context: SqliteContext) (parameters: Parameters.NewPipelineRunArtifactTag) =
         context.Insert("core__pipeline_run_artifact_tags", parameters)
     
-    let tryInsertCorePipelineRunArtifactTags (context: SqliteContext) (parameters: Parameters.NewCorePipelineRunArtifactTags) =
+    let tryInsertPipelineRunArtifactTag (context: SqliteContext) (parameters: Parameters.NewPipelineRunArtifactTag) =
         context.TryInsert("core__pipeline_run_artifact_tags", parameters)
     
     /// <summary>
-    /// Select a `Records.CorePipelineRunArtifacts` from the table `core__pipeline_run_artifacts`.
-    /// Internally this calls `context.SelectSingleAnon&lt;Records.CorePipelineRunArtifacts&gt;` and uses Records.CorePipelineRunArtifacts.SelectSql().
+    /// Select a `Records.PipelineRunArtifact` from the table `core__pipeline_run_artifacts`.
+    /// Internally this calls `context.SelectSingleAnon&lt;Records.PipelineRunArtifact&gt;` and uses Records.PipelineRunArtifact.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCorePipelineRunArtifactsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectPipelineRunArtifactRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCorePipelineRunArtifactsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunArtifacts.SelectSql() ] @ query |> buildSql
-        context.SelectSingleAnon<Records.CorePipelineRunArtifacts>(sql, parameters)
+    let selectPipelineRunArtifactRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunArtifact.SelectSql() ] @ query |> buildSql
+        context.SelectSingleAnon<Records.PipelineRunArtifact>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.SelectAnon&lt;Records.CorePipelineRunArtifacts&gt;` and uses Records.CorePipelineRunArtifacts.SelectSql().
+    /// Internally this calls `context.SelectAnon&lt;Records.PipelineRunArtifact&gt;` and uses Records.PipelineRunArtifact.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCorePipelineRunArtifactsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectPipelineRunArtifactRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCorePipelineRunArtifactsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunArtifacts.SelectSql() ] @ query |> buildSql
-        context.SelectAnon<Records.CorePipelineRunArtifacts>(sql, parameters)
+    let selectPipelineRunArtifactRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunArtifact.SelectSql() ] @ query |> buildSql
+        context.SelectAnon<Records.PipelineRunArtifact>(sql, parameters)
     /// <summary>
-    /// Select a `Records.CorePipelineRunArtifacts` from the table `core__pipeline_run_artifacts`.
-    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.CorePipelineRunArtifacts&gt;` and uses Records.CorePipelineRunArtifacts.SelectSql().
+    /// Select a `Records.PipelineRunArtifact` from the table `core__pipeline_run_artifacts`.
+    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.PipelineRunArtifact&gt;` and uses Records.PipelineRunArtifact.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCorePipelineRunArtifactsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectPipelineRunArtifactRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCorePipelineRunArtifactsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunArtifacts.SelectSql() ] @ query |> buildSql
-        context.TrySelectSingleAnon<Records.CorePipelineRunArtifacts>(sql, parameters)
+    let trySelectPipelineRunArtifactRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunArtifact.SelectSql() ] @ query |> buildSql
+        context.TrySelectSingleAnon<Records.PipelineRunArtifact>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.TrySelectAnon&lt;Records.CorePipelineRunArtifacts&gt;` and uses Records.CorePipelineRunArtifacts.SelectSql().
+    /// Internally this calls `context.TrySelectAnon&lt;Records.PipelineRunArtifact&gt;` and uses Records.PipelineRunArtifact.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCorePipelineRunArtifactsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectPipelineRunArtifactRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCorePipelineRunArtifactsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunArtifacts.SelectSql() ] @ query |> buildSql
-        context.TrySelectAnon<Records.CorePipelineRunArtifacts>(sql, parameters)
+    let trySelectPipelineRunArtifactRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunArtifact.SelectSql() ] @ query |> buildSql
+        context.TrySelectAnon<Records.PipelineRunArtifact>(sql, parameters)
     
-    let insertCorePipelineRunArtifacts (context: SqliteContext) (parameters: Parameters.NewCorePipelineRunArtifacts) =
+    let insertPipelineRunArtifact (context: SqliteContext) (parameters: Parameters.NewPipelineRunArtifact) =
         context.Insert("core__pipeline_run_artifacts", parameters)
     
-    let tryInsertCorePipelineRunArtifacts (context: SqliteContext) (parameters: Parameters.NewCorePipelineRunArtifacts) =
+    let tryInsertPipelineRunArtifact (context: SqliteContext) (parameters: Parameters.NewPipelineRunArtifact) =
         context.TryInsert("core__pipeline_run_artifacts", parameters)
     
     /// <summary>
-    /// Select a `Records.CorePipelineRunDataStore` from the table `core__pipeline_run_data_store`.
-    /// Internally this calls `context.SelectSingleAnon&lt;Records.CorePipelineRunDataStore&gt;` and uses Records.CorePipelineRunDataStore.SelectSql().
+    /// Select a `Records.PipelineRunDataStoreItem` from the table `core__pipeline_run_data_store`.
+    /// Internally this calls `context.SelectSingleAnon&lt;Records.PipelineRunDataStoreItem&gt;` and uses Records.PipelineRunDataStoreItem.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCorePipelineRunDataStoreRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectPipelineRunDataStoreItemRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCorePipelineRunDataStoreRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunDataStore.SelectSql() ] @ query |> buildSql
-        context.SelectSingleAnon<Records.CorePipelineRunDataStore>(sql, parameters)
+    let selectPipelineRunDataStoreItemRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunDataStoreItem.SelectSql() ] @ query |> buildSql
+        context.SelectSingleAnon<Records.PipelineRunDataStoreItem>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.SelectAnon&lt;Records.CorePipelineRunDataStore&gt;` and uses Records.CorePipelineRunDataStore.SelectSql().
+    /// Internally this calls `context.SelectAnon&lt;Records.PipelineRunDataStoreItem&gt;` and uses Records.PipelineRunDataStoreItem.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCorePipelineRunDataStoreRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectPipelineRunDataStoreItemRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCorePipelineRunDataStoreRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunDataStore.SelectSql() ] @ query |> buildSql
-        context.SelectAnon<Records.CorePipelineRunDataStore>(sql, parameters)
+    let selectPipelineRunDataStoreItemRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunDataStoreItem.SelectSql() ] @ query |> buildSql
+        context.SelectAnon<Records.PipelineRunDataStoreItem>(sql, parameters)
     /// <summary>
-    /// Select a `Records.CorePipelineRunDataStore` from the table `core__pipeline_run_data_store`.
-    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.CorePipelineRunDataStore&gt;` and uses Records.CorePipelineRunDataStore.SelectSql().
+    /// Select a `Records.PipelineRunDataStoreItem` from the table `core__pipeline_run_data_store`.
+    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.PipelineRunDataStoreItem&gt;` and uses Records.PipelineRunDataStoreItem.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCorePipelineRunDataStoreRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectPipelineRunDataStoreItemRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCorePipelineRunDataStoreRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunDataStore.SelectSql() ] @ query |> buildSql
-        context.TrySelectSingleAnon<Records.CorePipelineRunDataStore>(sql, parameters)
+    let trySelectPipelineRunDataStoreItemRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunDataStoreItem.SelectSql() ] @ query |> buildSql
+        context.TrySelectSingleAnon<Records.PipelineRunDataStoreItem>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.TrySelectAnon&lt;Records.CorePipelineRunDataStore&gt;` and uses Records.CorePipelineRunDataStore.SelectSql().
+    /// Internally this calls `context.TrySelectAnon&lt;Records.PipelineRunDataStoreItem&gt;` and uses Records.PipelineRunDataStoreItem.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCorePipelineRunDataStoreRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectPipelineRunDataStoreItemRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCorePipelineRunDataStoreRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunDataStore.SelectSql() ] @ query |> buildSql
-        context.TrySelectAnon<Records.CorePipelineRunDataStore>(sql, parameters)
+    let trySelectPipelineRunDataStoreItemRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunDataStoreItem.SelectSql() ] @ query |> buildSql
+        context.TrySelectAnon<Records.PipelineRunDataStoreItem>(sql, parameters)
     
-    let insertCorePipelineRunDataStore (context: SqliteContext) (parameters: Parameters.NewCorePipelineRunDataStore) =
+    let insertPipelineRunDataStoreItem (context: SqliteContext) (parameters: Parameters.NewPipelineRunDataStoreItem) =
         context.Insert("core__pipeline_run_data_store", parameters)
     
-    let tryInsertCorePipelineRunDataStore (context: SqliteContext) (parameters: Parameters.NewCorePipelineRunDataStore) =
+    let tryInsertPipelineRunDataStoreItem (context: SqliteContext) (parameters: Parameters.NewPipelineRunDataStoreItem) =
         context.TryInsert("core__pipeline_run_data_store", parameters)
     
     /// <summary>
-    /// Select a `Records.CorePipelineRunKeyValues` from the table `core__pipeline_run_key_values`.
-    /// Internally this calls `context.SelectSingleAnon&lt;Records.CorePipelineRunKeyValues&gt;` and uses Records.CorePipelineRunKeyValues.SelectSql().
+    /// Select a `Records.PipelineRunKeyValue` from the table `core__pipeline_run_key_values`.
+    /// Internally this calls `context.SelectSingleAnon&lt;Records.PipelineRunKeyValue&gt;` and uses Records.PipelineRunKeyValue.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCorePipelineRunKeyValuesRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectPipelineRunKeyValueRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCorePipelineRunKeyValuesRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunKeyValues.SelectSql() ] @ query |> buildSql
-        context.SelectSingleAnon<Records.CorePipelineRunKeyValues>(sql, parameters)
+    let selectPipelineRunKeyValueRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunKeyValue.SelectSql() ] @ query |> buildSql
+        context.SelectSingleAnon<Records.PipelineRunKeyValue>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.SelectAnon&lt;Records.CorePipelineRunKeyValues&gt;` and uses Records.CorePipelineRunKeyValues.SelectSql().
+    /// Internally this calls `context.SelectAnon&lt;Records.PipelineRunKeyValue&gt;` and uses Records.PipelineRunKeyValue.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCorePipelineRunKeyValuesRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectPipelineRunKeyValueRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCorePipelineRunKeyValuesRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunKeyValues.SelectSql() ] @ query |> buildSql
-        context.SelectAnon<Records.CorePipelineRunKeyValues>(sql, parameters)
+    let selectPipelineRunKeyValueRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunKeyValue.SelectSql() ] @ query |> buildSql
+        context.SelectAnon<Records.PipelineRunKeyValue>(sql, parameters)
     /// <summary>
-    /// Select a `Records.CorePipelineRunKeyValues` from the table `core__pipeline_run_key_values`.
-    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.CorePipelineRunKeyValues&gt;` and uses Records.CorePipelineRunKeyValues.SelectSql().
+    /// Select a `Records.PipelineRunKeyValue` from the table `core__pipeline_run_key_values`.
+    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.PipelineRunKeyValue&gt;` and uses Records.PipelineRunKeyValue.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCorePipelineRunKeyValuesRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectPipelineRunKeyValueRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCorePipelineRunKeyValuesRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunKeyValues.SelectSql() ] @ query |> buildSql
-        context.TrySelectSingleAnon<Records.CorePipelineRunKeyValues>(sql, parameters)
+    let trySelectPipelineRunKeyValueRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunKeyValue.SelectSql() ] @ query |> buildSql
+        context.TrySelectSingleAnon<Records.PipelineRunKeyValue>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.TrySelectAnon&lt;Records.CorePipelineRunKeyValues&gt;` and uses Records.CorePipelineRunKeyValues.SelectSql().
+    /// Internally this calls `context.TrySelectAnon&lt;Records.PipelineRunKeyValue&gt;` and uses Records.PipelineRunKeyValue.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCorePipelineRunKeyValuesRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectPipelineRunKeyValueRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCorePipelineRunKeyValuesRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunKeyValues.SelectSql() ] @ query |> buildSql
-        context.TrySelectAnon<Records.CorePipelineRunKeyValues>(sql, parameters)
+    let trySelectPipelineRunKeyValueRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunKeyValue.SelectSql() ] @ query |> buildSql
+        context.TrySelectAnon<Records.PipelineRunKeyValue>(sql, parameters)
     
-    let insertCorePipelineRunKeyValues (context: SqliteContext) (parameters: Parameters.NewCorePipelineRunKeyValues) =
+    let insertPipelineRunKeyValue (context: SqliteContext) (parameters: Parameters.NewPipelineRunKeyValue) =
         context.Insert("core__pipeline_run_key_values", parameters)
     
-    let tryInsertCorePipelineRunKeyValues (context: SqliteContext) (parameters: Parameters.NewCorePipelineRunKeyValues) =
+    let tryInsertPipelineRunKeyValue (context: SqliteContext) (parameters: Parameters.NewPipelineRunKeyValue) =
         context.TryInsert("core__pipeline_run_key_values", parameters)
     
     /// <summary>
-    /// Select a `Records.CorePipelineRunLogs` from the table `core__pipeline_run_logs`.
-    /// Internally this calls `context.SelectSingleAnon&lt;Records.CorePipelineRunLogs&gt;` and uses Records.CorePipelineRunLogs.SelectSql().
+    /// Select a `Records.PipelineRunLogItem` from the table `core__pipeline_run_logs`.
+    /// Internally this calls `context.SelectSingleAnon&lt;Records.PipelineRunLogItem&gt;` and uses Records.PipelineRunLogItem.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCorePipelineRunLogsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectPipelineRunLogItemRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCorePipelineRunLogsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunLogs.SelectSql() ] @ query |> buildSql
-        context.SelectSingleAnon<Records.CorePipelineRunLogs>(sql, parameters)
+    let selectPipelineRunLogItemRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunLogItem.SelectSql() ] @ query |> buildSql
+        context.SelectSingleAnon<Records.PipelineRunLogItem>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.SelectAnon&lt;Records.CorePipelineRunLogs&gt;` and uses Records.CorePipelineRunLogs.SelectSql().
+    /// Internally this calls `context.SelectAnon&lt;Records.PipelineRunLogItem&gt;` and uses Records.PipelineRunLogItem.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCorePipelineRunLogsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectPipelineRunLogItemRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCorePipelineRunLogsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunLogs.SelectSql() ] @ query |> buildSql
-        context.SelectAnon<Records.CorePipelineRunLogs>(sql, parameters)
+    let selectPipelineRunLogItemRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunLogItem.SelectSql() ] @ query |> buildSql
+        context.SelectAnon<Records.PipelineRunLogItem>(sql, parameters)
     /// <summary>
-    /// Select a `Records.CorePipelineRunLogs` from the table `core__pipeline_run_logs`.
-    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.CorePipelineRunLogs&gt;` and uses Records.CorePipelineRunLogs.SelectSql().
+    /// Select a `Records.PipelineRunLogItem` from the table `core__pipeline_run_logs`.
+    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.PipelineRunLogItem&gt;` and uses Records.PipelineRunLogItem.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCorePipelineRunLogsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectPipelineRunLogItemRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCorePipelineRunLogsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunLogs.SelectSql() ] @ query |> buildSql
-        context.TrySelectSingleAnon<Records.CorePipelineRunLogs>(sql, parameters)
+    let trySelectPipelineRunLogItemRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunLogItem.SelectSql() ] @ query |> buildSql
+        context.TrySelectSingleAnon<Records.PipelineRunLogItem>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.TrySelectAnon&lt;Records.CorePipelineRunLogs&gt;` and uses Records.CorePipelineRunLogs.SelectSql().
+    /// Internally this calls `context.TrySelectAnon&lt;Records.PipelineRunLogItem&gt;` and uses Records.PipelineRunLogItem.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCorePipelineRunLogsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectPipelineRunLogItemRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCorePipelineRunLogsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunLogs.SelectSql() ] @ query |> buildSql
-        context.TrySelectAnon<Records.CorePipelineRunLogs>(sql, parameters)
+    let trySelectPipelineRunLogItemRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunLogItem.SelectSql() ] @ query |> buildSql
+        context.TrySelectAnon<Records.PipelineRunLogItem>(sql, parameters)
     
-    let insertCorePipelineRunLogs (context: SqliteContext) (parameters: Parameters.NewCorePipelineRunLogs) =
+    let insertPipelineRunLogItem (context: SqliteContext) (parameters: Parameters.NewPipelineRunLogItem) =
         context.Insert("core__pipeline_run_logs", parameters)
     
-    let tryInsertCorePipelineRunLogs (context: SqliteContext) (parameters: Parameters.NewCorePipelineRunLogs) =
+    let tryInsertPipelineRunLogItem (context: SqliteContext) (parameters: Parameters.NewPipelineRunLogItem) =
         context.TryInsert("core__pipeline_run_logs", parameters)
     
     /// <summary>
-    /// Select a `Records.CorePipelineRunPaths` from the table `core__pipeline_run_paths`.
-    /// Internally this calls `context.SelectSingleAnon&lt;Records.CorePipelineRunPaths&gt;` and uses Records.CorePipelineRunPaths.SelectSql().
+    /// Select a `Records.PipelineRunPath` from the table `core__pipeline_run_paths`.
+    /// Internally this calls `context.SelectSingleAnon&lt;Records.PipelineRunPath&gt;` and uses Records.PipelineRunPath.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCorePipelineRunPathsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectPipelineRunPathRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCorePipelineRunPathsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunPaths.SelectSql() ] @ query |> buildSql
-        context.SelectSingleAnon<Records.CorePipelineRunPaths>(sql, parameters)
+    let selectPipelineRunPathRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunPath.SelectSql() ] @ query |> buildSql
+        context.SelectSingleAnon<Records.PipelineRunPath>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.SelectAnon&lt;Records.CorePipelineRunPaths&gt;` and uses Records.CorePipelineRunPaths.SelectSql().
+    /// Internally this calls `context.SelectAnon&lt;Records.PipelineRunPath&gt;` and uses Records.PipelineRunPath.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCorePipelineRunPathsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectPipelineRunPathRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCorePipelineRunPathsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunPaths.SelectSql() ] @ query |> buildSql
-        context.SelectAnon<Records.CorePipelineRunPaths>(sql, parameters)
+    let selectPipelineRunPathRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunPath.SelectSql() ] @ query |> buildSql
+        context.SelectAnon<Records.PipelineRunPath>(sql, parameters)
     /// <summary>
-    /// Select a `Records.CorePipelineRunPaths` from the table `core__pipeline_run_paths`.
-    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.CorePipelineRunPaths&gt;` and uses Records.CorePipelineRunPaths.SelectSql().
+    /// Select a `Records.PipelineRunPath` from the table `core__pipeline_run_paths`.
+    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.PipelineRunPath&gt;` and uses Records.PipelineRunPath.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCorePipelineRunPathsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectPipelineRunPathRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCorePipelineRunPathsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunPaths.SelectSql() ] @ query |> buildSql
-        context.TrySelectSingleAnon<Records.CorePipelineRunPaths>(sql, parameters)
+    let trySelectPipelineRunPathRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunPath.SelectSql() ] @ query |> buildSql
+        context.TrySelectSingleAnon<Records.PipelineRunPath>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.TrySelectAnon&lt;Records.CorePipelineRunPaths&gt;` and uses Records.CorePipelineRunPaths.SelectSql().
+    /// Internally this calls `context.TrySelectAnon&lt;Records.PipelineRunPath&gt;` and uses Records.PipelineRunPath.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCorePipelineRunPathsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectPipelineRunPathRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCorePipelineRunPathsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunPaths.SelectSql() ] @ query |> buildSql
-        context.TrySelectAnon<Records.CorePipelineRunPaths>(sql, parameters)
+    let trySelectPipelineRunPathRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunPath.SelectSql() ] @ query |> buildSql
+        context.TrySelectAnon<Records.PipelineRunPath>(sql, parameters)
     
-    let insertCorePipelineRunPaths (context: SqliteContext) (parameters: Parameters.NewCorePipelineRunPaths) =
+    let insertPipelineRunPath (context: SqliteContext) (parameters: Parameters.NewPipelineRunPath) =
         context.Insert("core__pipeline_run_paths", parameters)
     
-    let tryInsertCorePipelineRunPaths (context: SqliteContext) (parameters: Parameters.NewCorePipelineRunPaths) =
+    let tryInsertPipelineRunPath (context: SqliteContext) (parameters: Parameters.NewPipelineRunPath) =
         context.TryInsert("core__pipeline_run_paths", parameters)
     
     /// <summary>
-    /// Select a `Records.CorePipelineRunResourceClassifications` from the table `core__pipeline_run_resource_classifications`.
-    /// Internally this calls `context.SelectSingleAnon&lt;Records.CorePipelineRunResourceClassifications&gt;` and uses Records.CorePipelineRunResourceClassifications.SelectSql().
+    /// Select a `Records.PipelineRunResourceClassification` from the table `core__pipeline_run_resource_classifications`.
+    /// Internally this calls `context.SelectSingleAnon&lt;Records.PipelineRunResourceClassification&gt;` and uses Records.PipelineRunResourceClassification.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCorePipelineRunResourceClassificationsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectPipelineRunResourceClassificationRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCorePipelineRunResourceClassificationsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunResourceClassifications.SelectSql() ] @ query |> buildSql
-        context.SelectSingleAnon<Records.CorePipelineRunResourceClassifications>(sql, parameters)
+    let selectPipelineRunResourceClassificationRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunResourceClassification.SelectSql() ] @ query |> buildSql
+        context.SelectSingleAnon<Records.PipelineRunResourceClassification>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.SelectAnon&lt;Records.CorePipelineRunResourceClassifications&gt;` and uses Records.CorePipelineRunResourceClassifications.SelectSql().
+    /// Internally this calls `context.SelectAnon&lt;Records.PipelineRunResourceClassification&gt;` and uses Records.PipelineRunResourceClassification.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCorePipelineRunResourceClassificationsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectPipelineRunResourceClassificationRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCorePipelineRunResourceClassificationsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunResourceClassifications.SelectSql() ] @ query |> buildSql
-        context.SelectAnon<Records.CorePipelineRunResourceClassifications>(sql, parameters)
+    let selectPipelineRunResourceClassificationRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunResourceClassification.SelectSql() ] @ query |> buildSql
+        context.SelectAnon<Records.PipelineRunResourceClassification>(sql, parameters)
     /// <summary>
-    /// Select a `Records.CorePipelineRunResourceClassifications` from the table `core__pipeline_run_resource_classifications`.
-    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.CorePipelineRunResourceClassifications&gt;` and uses Records.CorePipelineRunResourceClassifications.SelectSql().
+    /// Select a `Records.PipelineRunResourceClassification` from the table `core__pipeline_run_resource_classifications`.
+    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.PipelineRunResourceClassification&gt;` and uses Records.PipelineRunResourceClassification.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCorePipelineRunResourceClassificationsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectPipelineRunResourceClassificationRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCorePipelineRunResourceClassificationsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunResourceClassifications.SelectSql() ] @ query |> buildSql
-        context.TrySelectSingleAnon<Records.CorePipelineRunResourceClassifications>(sql, parameters)
+    let trySelectPipelineRunResourceClassificationRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunResourceClassification.SelectSql() ] @ query |> buildSql
+        context.TrySelectSingleAnon<Records.PipelineRunResourceClassification>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.TrySelectAnon&lt;Records.CorePipelineRunResourceClassifications&gt;` and uses Records.CorePipelineRunResourceClassifications.SelectSql().
+    /// Internally this calls `context.TrySelectAnon&lt;Records.PipelineRunResourceClassification&gt;` and uses Records.PipelineRunResourceClassification.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCorePipelineRunResourceClassificationsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectPipelineRunResourceClassificationRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCorePipelineRunResourceClassificationsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunResourceClassifications.SelectSql() ] @ query |> buildSql
-        context.TrySelectAnon<Records.CorePipelineRunResourceClassifications>(sql, parameters)
+    let trySelectPipelineRunResourceClassificationRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunResourceClassification.SelectSql() ] @ query |> buildSql
+        context.TrySelectAnon<Records.PipelineRunResourceClassification>(sql, parameters)
     
-    let insertCorePipelineRunResourceClassifications (context: SqliteContext) (parameters: Parameters.NewCorePipelineRunResourceClassifications) =
+    let insertPipelineRunResourceClassification (context: SqliteContext) (parameters: Parameters.NewPipelineRunResourceClassification) =
         context.Insert("core__pipeline_run_resource_classifications", parameters)
     
-    let tryInsertCorePipelineRunResourceClassifications (context: SqliteContext) (parameters: Parameters.NewCorePipelineRunResourceClassifications) =
+    let tryInsertPipelineRunResourceClassification (context: SqliteContext) (parameters: Parameters.NewPipelineRunResourceClassification) =
         context.TryInsert("core__pipeline_run_resource_classifications", parameters)
     
     /// <summary>
@@ -4269,7 +4269,7 @@ module Operations =
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
@@ -4288,7 +4288,7 @@ module Operations =
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
@@ -4307,7 +4307,7 @@ module Operations =
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
@@ -4326,7 +4326,7 @@ module Operations =
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
@@ -4344,1370 +4344,1370 @@ module Operations =
         context.TryInsert("core__pipeline_run_resource_metadata", parameters)
     
     /// <summary>
-    /// Select a `Records.CorePipelineRunResourceTags` from the table `core__pipeline_run_resource_tags`.
-    /// Internally this calls `context.SelectSingleAnon&lt;Records.CorePipelineRunResourceTags&gt;` and uses Records.CorePipelineRunResourceTags.SelectSql().
+    /// Select a `Records.PipelineRunResourceTag` from the table `core__pipeline_run_resource_tags`.
+    /// Internally this calls `context.SelectSingleAnon&lt;Records.PipelineRunResourceTag&gt;` and uses Records.PipelineRunResourceTag.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCorePipelineRunResourceTagsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectPipelineRunResourceTagRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCorePipelineRunResourceTagsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunResourceTags.SelectSql() ] @ query |> buildSql
-        context.SelectSingleAnon<Records.CorePipelineRunResourceTags>(sql, parameters)
+    let selectPipelineRunResourceTagRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunResourceTag.SelectSql() ] @ query |> buildSql
+        context.SelectSingleAnon<Records.PipelineRunResourceTag>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.SelectAnon&lt;Records.CorePipelineRunResourceTags&gt;` and uses Records.CorePipelineRunResourceTags.SelectSql().
+    /// Internally this calls `context.SelectAnon&lt;Records.PipelineRunResourceTag&gt;` and uses Records.PipelineRunResourceTag.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCorePipelineRunResourceTagsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectPipelineRunResourceTagRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCorePipelineRunResourceTagsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunResourceTags.SelectSql() ] @ query |> buildSql
-        context.SelectAnon<Records.CorePipelineRunResourceTags>(sql, parameters)
+    let selectPipelineRunResourceTagRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunResourceTag.SelectSql() ] @ query |> buildSql
+        context.SelectAnon<Records.PipelineRunResourceTag>(sql, parameters)
     /// <summary>
-    /// Select a `Records.CorePipelineRunResourceTags` from the table `core__pipeline_run_resource_tags`.
-    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.CorePipelineRunResourceTags&gt;` and uses Records.CorePipelineRunResourceTags.SelectSql().
+    /// Select a `Records.PipelineRunResourceTag` from the table `core__pipeline_run_resource_tags`.
+    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.PipelineRunResourceTag&gt;` and uses Records.PipelineRunResourceTag.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCorePipelineRunResourceTagsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectPipelineRunResourceTagRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCorePipelineRunResourceTagsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunResourceTags.SelectSql() ] @ query |> buildSql
-        context.TrySelectSingleAnon<Records.CorePipelineRunResourceTags>(sql, parameters)
+    let trySelectPipelineRunResourceTagRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunResourceTag.SelectSql() ] @ query |> buildSql
+        context.TrySelectSingleAnon<Records.PipelineRunResourceTag>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.TrySelectAnon&lt;Records.CorePipelineRunResourceTags&gt;` and uses Records.CorePipelineRunResourceTags.SelectSql().
+    /// Internally this calls `context.TrySelectAnon&lt;Records.PipelineRunResourceTag&gt;` and uses Records.PipelineRunResourceTag.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCorePipelineRunResourceTagsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectPipelineRunResourceTagRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCorePipelineRunResourceTagsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunResourceTags.SelectSql() ] @ query |> buildSql
-        context.TrySelectAnon<Records.CorePipelineRunResourceTags>(sql, parameters)
+    let trySelectPipelineRunResourceTagRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunResourceTag.SelectSql() ] @ query |> buildSql
+        context.TrySelectAnon<Records.PipelineRunResourceTag>(sql, parameters)
     
-    let insertCorePipelineRunResourceTags (context: SqliteContext) (parameters: Parameters.NewCorePipelineRunResourceTags) =
+    let insertPipelineRunResourceTag (context: SqliteContext) (parameters: Parameters.NewPipelineRunResourceTag) =
         context.Insert("core__pipeline_run_resource_tags", parameters)
     
-    let tryInsertCorePipelineRunResourceTags (context: SqliteContext) (parameters: Parameters.NewCorePipelineRunResourceTags) =
+    let tryInsertPipelineRunResourceTag (context: SqliteContext) (parameters: Parameters.NewPipelineRunResourceTag) =
         context.TryInsert("core__pipeline_run_resource_tags", parameters)
     
     /// <summary>
-    /// Select a `Records.CorePipelineRunResources` from the table `core__pipeline_run_resources`.
-    /// Internally this calls `context.SelectSingleAnon&lt;Records.CorePipelineRunResources&gt;` and uses Records.CorePipelineRunResources.SelectSql().
+    /// Select a `Records.PipelineRunResource` from the table `core__pipeline_run_resources`.
+    /// Internally this calls `context.SelectSingleAnon&lt;Records.PipelineRunResource&gt;` and uses Records.PipelineRunResource.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCorePipelineRunResourcesRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectPipelineRunResourceRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCorePipelineRunResourcesRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunResources.SelectSql() ] @ query |> buildSql
-        context.SelectSingleAnon<Records.CorePipelineRunResources>(sql, parameters)
+    let selectPipelineRunResourceRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunResource.SelectSql() ] @ query |> buildSql
+        context.SelectSingleAnon<Records.PipelineRunResource>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.SelectAnon&lt;Records.CorePipelineRunResources&gt;` and uses Records.CorePipelineRunResources.SelectSql().
+    /// Internally this calls `context.SelectAnon&lt;Records.PipelineRunResource&gt;` and uses Records.PipelineRunResource.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCorePipelineRunResourcesRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectPipelineRunResourceRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCorePipelineRunResourcesRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunResources.SelectSql() ] @ query |> buildSql
-        context.SelectAnon<Records.CorePipelineRunResources>(sql, parameters)
+    let selectPipelineRunResourceRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunResource.SelectSql() ] @ query |> buildSql
+        context.SelectAnon<Records.PipelineRunResource>(sql, parameters)
     /// <summary>
-    /// Select a `Records.CorePipelineRunResources` from the table `core__pipeline_run_resources`.
-    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.CorePipelineRunResources&gt;` and uses Records.CorePipelineRunResources.SelectSql().
+    /// Select a `Records.PipelineRunResource` from the table `core__pipeline_run_resources`.
+    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.PipelineRunResource&gt;` and uses Records.PipelineRunResource.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCorePipelineRunResourcesRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectPipelineRunResourceRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCorePipelineRunResourcesRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunResources.SelectSql() ] @ query |> buildSql
-        context.TrySelectSingleAnon<Records.CorePipelineRunResources>(sql, parameters)
+    let trySelectPipelineRunResourceRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunResource.SelectSql() ] @ query |> buildSql
+        context.TrySelectSingleAnon<Records.PipelineRunResource>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.TrySelectAnon&lt;Records.CorePipelineRunResources&gt;` and uses Records.CorePipelineRunResources.SelectSql().
+    /// Internally this calls `context.TrySelectAnon&lt;Records.PipelineRunResource&gt;` and uses Records.PipelineRunResource.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCorePipelineRunResourcesRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectPipelineRunResourceRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCorePipelineRunResourcesRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunResources.SelectSql() ] @ query |> buildSql
-        context.TrySelectAnon<Records.CorePipelineRunResources>(sql, parameters)
+    let trySelectPipelineRunResourceRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunResource.SelectSql() ] @ query |> buildSql
+        context.TrySelectAnon<Records.PipelineRunResource>(sql, parameters)
     
-    let insertCorePipelineRunResources (context: SqliteContext) (parameters: Parameters.NewCorePipelineRunResources) =
+    let insertPipelineRunResource (context: SqliteContext) (parameters: Parameters.NewPipelineRunResource) =
         context.Insert("core__pipeline_run_resources", parameters)
     
-    let tryInsertCorePipelineRunResources (context: SqliteContext) (parameters: Parameters.NewCorePipelineRunResources) =
+    let tryInsertPipelineRunResource (context: SqliteContext) (parameters: Parameters.NewPipelineRunResource) =
         context.TryInsert("core__pipeline_run_resources", parameters)
     
     /// <summary>
-    /// Select a `Records.CorePipelineRunResults` from the table `core__pipeline_run_results`.
-    /// Internally this calls `context.SelectSingleAnon&lt;Records.CorePipelineRunResults&gt;` and uses Records.CorePipelineRunResults.SelectSql().
+    /// Select a `Records.PipelineRunResult` from the table `core__pipeline_run_results`.
+    /// Internally this calls `context.SelectSingleAnon&lt;Records.PipelineRunResult&gt;` and uses Records.PipelineRunResult.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCorePipelineRunResultsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectPipelineRunResultRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCorePipelineRunResultsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunResults.SelectSql() ] @ query |> buildSql
-        context.SelectSingleAnon<Records.CorePipelineRunResults>(sql, parameters)
+    let selectPipelineRunResultRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunResult.SelectSql() ] @ query |> buildSql
+        context.SelectSingleAnon<Records.PipelineRunResult>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.SelectAnon&lt;Records.CorePipelineRunResults&gt;` and uses Records.CorePipelineRunResults.SelectSql().
+    /// Internally this calls `context.SelectAnon&lt;Records.PipelineRunResult&gt;` and uses Records.PipelineRunResult.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCorePipelineRunResultsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectPipelineRunResultRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCorePipelineRunResultsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunResults.SelectSql() ] @ query |> buildSql
-        context.SelectAnon<Records.CorePipelineRunResults>(sql, parameters)
+    let selectPipelineRunResultRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunResult.SelectSql() ] @ query |> buildSql
+        context.SelectAnon<Records.PipelineRunResult>(sql, parameters)
     /// <summary>
-    /// Select a `Records.CorePipelineRunResults` from the table `core__pipeline_run_results`.
-    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.CorePipelineRunResults&gt;` and uses Records.CorePipelineRunResults.SelectSql().
+    /// Select a `Records.PipelineRunResult` from the table `core__pipeline_run_results`.
+    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.PipelineRunResult&gt;` and uses Records.PipelineRunResult.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCorePipelineRunResultsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectPipelineRunResultRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCorePipelineRunResultsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunResults.SelectSql() ] @ query |> buildSql
-        context.TrySelectSingleAnon<Records.CorePipelineRunResults>(sql, parameters)
+    let trySelectPipelineRunResultRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunResult.SelectSql() ] @ query |> buildSql
+        context.TrySelectSingleAnon<Records.PipelineRunResult>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.TrySelectAnon&lt;Records.CorePipelineRunResults&gt;` and uses Records.CorePipelineRunResults.SelectSql().
+    /// Internally this calls `context.TrySelectAnon&lt;Records.PipelineRunResult&gt;` and uses Records.PipelineRunResult.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCorePipelineRunResultsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectPipelineRunResultRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCorePipelineRunResultsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunResults.SelectSql() ] @ query |> buildSql
-        context.TrySelectAnon<Records.CorePipelineRunResults>(sql, parameters)
+    let trySelectPipelineRunResultRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunResult.SelectSql() ] @ query |> buildSql
+        context.TrySelectAnon<Records.PipelineRunResult>(sql, parameters)
     
-    let insertCorePipelineRunResults (context: SqliteContext) (parameters: Parameters.NewCorePipelineRunResults) =
+    let insertPipelineRunResult (context: SqliteContext) (parameters: Parameters.NewPipelineRunResult) =
         context.Insert("core__pipeline_run_results", parameters)
     
-    let tryInsertCorePipelineRunResults (context: SqliteContext) (parameters: Parameters.NewCorePipelineRunResults) =
+    let tryInsertPipelineRunResult (context: SqliteContext) (parameters: Parameters.NewPipelineRunResult) =
         context.TryInsert("core__pipeline_run_results", parameters)
     
     /// <summary>
-    /// Select a `Records.CorePipelineRunStepResults` from the table `core__pipeline_run_step_results`.
-    /// Internally this calls `context.SelectSingleAnon&lt;Records.CorePipelineRunStepResults&gt;` and uses Records.CorePipelineRunStepResults.SelectSql().
+    /// Select a `Records.PipelineRunStepResult` from the table `core__pipeline_run_step_results`.
+    /// Internally this calls `context.SelectSingleAnon&lt;Records.PipelineRunStepResult&gt;` and uses Records.PipelineRunStepResult.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCorePipelineRunStepResultsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectPipelineRunStepResultRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCorePipelineRunStepResultsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunStepResults.SelectSql() ] @ query |> buildSql
-        context.SelectSingleAnon<Records.CorePipelineRunStepResults>(sql, parameters)
+    let selectPipelineRunStepResultRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunStepResult.SelectSql() ] @ query |> buildSql
+        context.SelectSingleAnon<Records.PipelineRunStepResult>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.SelectAnon&lt;Records.CorePipelineRunStepResults&gt;` and uses Records.CorePipelineRunStepResults.SelectSql().
+    /// Internally this calls `context.SelectAnon&lt;Records.PipelineRunStepResult&gt;` and uses Records.PipelineRunStepResult.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCorePipelineRunStepResultsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectPipelineRunStepResultRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCorePipelineRunStepResultsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunStepResults.SelectSql() ] @ query |> buildSql
-        context.SelectAnon<Records.CorePipelineRunStepResults>(sql, parameters)
+    let selectPipelineRunStepResultRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunStepResult.SelectSql() ] @ query |> buildSql
+        context.SelectAnon<Records.PipelineRunStepResult>(sql, parameters)
     /// <summary>
-    /// Select a `Records.CorePipelineRunStepResults` from the table `core__pipeline_run_step_results`.
-    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.CorePipelineRunStepResults&gt;` and uses Records.CorePipelineRunStepResults.SelectSql().
+    /// Select a `Records.PipelineRunStepResult` from the table `core__pipeline_run_step_results`.
+    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.PipelineRunStepResult&gt;` and uses Records.PipelineRunStepResult.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCorePipelineRunStepResultsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectPipelineRunStepResultRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCorePipelineRunStepResultsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunStepResults.SelectSql() ] @ query |> buildSql
-        context.TrySelectSingleAnon<Records.CorePipelineRunStepResults>(sql, parameters)
+    let trySelectPipelineRunStepResultRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunStepResult.SelectSql() ] @ query |> buildSql
+        context.TrySelectSingleAnon<Records.PipelineRunStepResult>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.TrySelectAnon&lt;Records.CorePipelineRunStepResults&gt;` and uses Records.CorePipelineRunStepResults.SelectSql().
+    /// Internally this calls `context.TrySelectAnon&lt;Records.PipelineRunStepResult&gt;` and uses Records.PipelineRunStepResult.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCorePipelineRunStepResultsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectPipelineRunStepResultRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCorePipelineRunStepResultsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRunStepResults.SelectSql() ] @ query |> buildSql
-        context.TrySelectAnon<Records.CorePipelineRunStepResults>(sql, parameters)
+    let trySelectPipelineRunStepResultRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRunStepResult.SelectSql() ] @ query |> buildSql
+        context.TrySelectAnon<Records.PipelineRunStepResult>(sql, parameters)
     
-    let insertCorePipelineRunStepResults (context: SqliteContext) (parameters: Parameters.NewCorePipelineRunStepResults) =
+    let insertPipelineRunStepResult (context: SqliteContext) (parameters: Parameters.NewPipelineRunStepResult) =
         context.Insert("core__pipeline_run_step_results", parameters)
     
-    let tryInsertCorePipelineRunStepResults (context: SqliteContext) (parameters: Parameters.NewCorePipelineRunStepResults) =
+    let tryInsertPipelineRunStepResult (context: SqliteContext) (parameters: Parameters.NewPipelineRunStepResult) =
         context.TryInsert("core__pipeline_run_step_results", parameters)
     
     /// <summary>
-    /// Select a `Records.CorePipelineRuns` from the table `core__pipeline_runs`.
-    /// Internally this calls `context.SelectSingleAnon&lt;Records.CorePipelineRuns&gt;` and uses Records.CorePipelineRuns.SelectSql().
+    /// Select a `Records.PipelineRun` from the table `core__pipeline_runs`.
+    /// Internally this calls `context.SelectSingleAnon&lt;Records.PipelineRun&gt;` and uses Records.PipelineRun.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCorePipelineRunsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectPipelineRunRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCorePipelineRunsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRuns.SelectSql() ] @ query |> buildSql
-        context.SelectSingleAnon<Records.CorePipelineRuns>(sql, parameters)
+    let selectPipelineRunRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRun.SelectSql() ] @ query |> buildSql
+        context.SelectSingleAnon<Records.PipelineRun>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.SelectAnon&lt;Records.CorePipelineRuns&gt;` and uses Records.CorePipelineRuns.SelectSql().
+    /// Internally this calls `context.SelectAnon&lt;Records.PipelineRun&gt;` and uses Records.PipelineRun.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectCorePipelineRunsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectPipelineRunRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectCorePipelineRunsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRuns.SelectSql() ] @ query |> buildSql
-        context.SelectAnon<Records.CorePipelineRuns>(sql, parameters)
+    let selectPipelineRunRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRun.SelectSql() ] @ query |> buildSql
+        context.SelectAnon<Records.PipelineRun>(sql, parameters)
     /// <summary>
-    /// Select a `Records.CorePipelineRuns` from the table `core__pipeline_runs`.
-    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.CorePipelineRuns&gt;` and uses Records.CorePipelineRuns.SelectSql().
+    /// Select a `Records.PipelineRun` from the table `core__pipeline_runs`.
+    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.PipelineRun&gt;` and uses Records.PipelineRun.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCorePipelineRunsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectPipelineRunRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCorePipelineRunsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRuns.SelectSql() ] @ query |> buildSql
-        context.TrySelectSingleAnon<Records.CorePipelineRuns>(sql, parameters)
+    let trySelectPipelineRunRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRun.SelectSql() ] @ query |> buildSql
+        context.TrySelectSingleAnon<Records.PipelineRun>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.TrySelectAnon&lt;Records.CorePipelineRuns&gt;` and uses Records.CorePipelineRuns.SelectSql().
+    /// Internally this calls `context.TrySelectAnon&lt;Records.PipelineRun&gt;` and uses Records.PipelineRun.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectCorePipelineRunsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectPipelineRunRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectCorePipelineRunsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.CorePipelineRuns.SelectSql() ] @ query |> buildSql
-        context.TrySelectAnon<Records.CorePipelineRuns>(sql, parameters)
+    let trySelectPipelineRunRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.PipelineRun.SelectSql() ] @ query |> buildSql
+        context.TrySelectAnon<Records.PipelineRun>(sql, parameters)
     
-    let insertCorePipelineRuns (context: SqliteContext) (parameters: Parameters.NewCorePipelineRuns) =
+    let insertPipelineRun (context: SqliteContext) (parameters: Parameters.NewPipelineRun) =
         context.Insert("core__pipeline_runs", parameters)
     
-    let tryInsertCorePipelineRuns (context: SqliteContext) (parameters: Parameters.NewCorePipelineRuns) =
+    let tryInsertPipelineRun (context: SqliteContext) (parameters: Parameters.NewPipelineRun) =
         context.TryInsert("core__pipeline_runs", parameters)
     
     /// <summary>
-    /// Select a `Records.StoreArtifactVersionClassifications` from the table `store__artifact_version_classifications`.
-    /// Internally this calls `context.SelectSingleAnon&lt;Records.StoreArtifactVersionClassifications&gt;` and uses Records.StoreArtifactVersionClassifications.SelectSql().
+    /// Select a `Records.ArtifactVersionClassification` from the table `store__artifact_version_classifications`.
+    /// Internally this calls `context.SelectSingleAnon&lt;Records.ArtifactVersionClassification&gt;` and uses Records.ArtifactVersionClassification.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectStoreArtifactVersionClassificationsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectArtifactVersionClassificationRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectStoreArtifactVersionClassificationsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreArtifactVersionClassifications.SelectSql() ] @ query |> buildSql
-        context.SelectSingleAnon<Records.StoreArtifactVersionClassifications>(sql, parameters)
+    let selectArtifactVersionClassificationRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.ArtifactVersionClassification.SelectSql() ] @ query |> buildSql
+        context.SelectSingleAnon<Records.ArtifactVersionClassification>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.SelectAnon&lt;Records.StoreArtifactVersionClassifications&gt;` and uses Records.StoreArtifactVersionClassifications.SelectSql().
+    /// Internally this calls `context.SelectAnon&lt;Records.ArtifactVersionClassification&gt;` and uses Records.ArtifactVersionClassification.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectStoreArtifactVersionClassificationsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectArtifactVersionClassificationRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectStoreArtifactVersionClassificationsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreArtifactVersionClassifications.SelectSql() ] @ query |> buildSql
-        context.SelectAnon<Records.StoreArtifactVersionClassifications>(sql, parameters)
+    let selectArtifactVersionClassificationRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.ArtifactVersionClassification.SelectSql() ] @ query |> buildSql
+        context.SelectAnon<Records.ArtifactVersionClassification>(sql, parameters)
     /// <summary>
-    /// Select a `Records.StoreArtifactVersionClassifications` from the table `store__artifact_version_classifications`.
-    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.StoreArtifactVersionClassifications&gt;` and uses Records.StoreArtifactVersionClassifications.SelectSql().
+    /// Select a `Records.ArtifactVersionClassification` from the table `store__artifact_version_classifications`.
+    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.ArtifactVersionClassification&gt;` and uses Records.ArtifactVersionClassification.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectStoreArtifactVersionClassificationsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectArtifactVersionClassificationRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectStoreArtifactVersionClassificationsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreArtifactVersionClassifications.SelectSql() ] @ query |> buildSql
-        context.TrySelectSingleAnon<Records.StoreArtifactVersionClassifications>(sql, parameters)
+    let trySelectArtifactVersionClassificationRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.ArtifactVersionClassification.SelectSql() ] @ query |> buildSql
+        context.TrySelectSingleAnon<Records.ArtifactVersionClassification>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.TrySelectAnon&lt;Records.StoreArtifactVersionClassifications&gt;` and uses Records.StoreArtifactVersionClassifications.SelectSql().
+    /// Internally this calls `context.TrySelectAnon&lt;Records.ArtifactVersionClassification&gt;` and uses Records.ArtifactVersionClassification.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectStoreArtifactVersionClassificationsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectArtifactVersionClassificationRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectStoreArtifactVersionClassificationsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreArtifactVersionClassifications.SelectSql() ] @ query |> buildSql
-        context.TrySelectAnon<Records.StoreArtifactVersionClassifications>(sql, parameters)
+    let trySelectArtifactVersionClassificationRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.ArtifactVersionClassification.SelectSql() ] @ query |> buildSql
+        context.TrySelectAnon<Records.ArtifactVersionClassification>(sql, parameters)
     
-    let insertStoreArtifactVersionClassifications (context: SqliteContext) (parameters: Parameters.NewStoreArtifactVersionClassifications) =
+    let insertArtifactVersionClassification (context: SqliteContext) (parameters: Parameters.NewArtifactVersionClassification) =
         context.Insert("store__artifact_version_classifications", parameters)
     
-    let tryInsertStoreArtifactVersionClassifications (context: SqliteContext) (parameters: Parameters.NewStoreArtifactVersionClassifications) =
+    let tryInsertArtifactVersionClassification (context: SqliteContext) (parameters: Parameters.NewArtifactVersionClassification) =
         context.TryInsert("store__artifact_version_classifications", parameters)
     
     /// <summary>
-    /// Select a `Records.StoreArtifactVersionMetadata` from the table `store__artifact_version_metadata`.
-    /// Internally this calls `context.SelectSingleAnon&lt;Records.StoreArtifactVersionMetadata&gt;` and uses Records.StoreArtifactVersionMetadata.SelectSql().
+    /// Select a `Records.ArtifactVersionMetadataItem` from the table `store__artifact_version_metadata`.
+    /// Internally this calls `context.SelectSingleAnon&lt;Records.ArtifactVersionMetadataItem&gt;` and uses Records.ArtifactVersionMetadataItem.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectStoreArtifactVersionMetadataRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectArtifactVersionMetadataItemRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectStoreArtifactVersionMetadataRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreArtifactVersionMetadata.SelectSql() ] @ query |> buildSql
-        context.SelectSingleAnon<Records.StoreArtifactVersionMetadata>(sql, parameters)
+    let selectArtifactVersionMetadataItemRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.ArtifactVersionMetadataItem.SelectSql() ] @ query |> buildSql
+        context.SelectSingleAnon<Records.ArtifactVersionMetadataItem>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.SelectAnon&lt;Records.StoreArtifactVersionMetadata&gt;` and uses Records.StoreArtifactVersionMetadata.SelectSql().
+    /// Internally this calls `context.SelectAnon&lt;Records.ArtifactVersionMetadataItem&gt;` and uses Records.ArtifactVersionMetadataItem.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectStoreArtifactVersionMetadataRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectArtifactVersionMetadataItemRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectStoreArtifactVersionMetadataRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreArtifactVersionMetadata.SelectSql() ] @ query |> buildSql
-        context.SelectAnon<Records.StoreArtifactVersionMetadata>(sql, parameters)
+    let selectArtifactVersionMetadataItemRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.ArtifactVersionMetadataItem.SelectSql() ] @ query |> buildSql
+        context.SelectAnon<Records.ArtifactVersionMetadataItem>(sql, parameters)
     /// <summary>
-    /// Select a `Records.StoreArtifactVersionMetadata` from the table `store__artifact_version_metadata`.
-    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.StoreArtifactVersionMetadata&gt;` and uses Records.StoreArtifactVersionMetadata.SelectSql().
+    /// Select a `Records.ArtifactVersionMetadataItem` from the table `store__artifact_version_metadata`.
+    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.ArtifactVersionMetadataItem&gt;` and uses Records.ArtifactVersionMetadataItem.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectStoreArtifactVersionMetadataRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectArtifactVersionMetadataItemRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectStoreArtifactVersionMetadataRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreArtifactVersionMetadata.SelectSql() ] @ query |> buildSql
-        context.TrySelectSingleAnon<Records.StoreArtifactVersionMetadata>(sql, parameters)
+    let trySelectArtifactVersionMetadataItemRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.ArtifactVersionMetadataItem.SelectSql() ] @ query |> buildSql
+        context.TrySelectSingleAnon<Records.ArtifactVersionMetadataItem>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.TrySelectAnon&lt;Records.StoreArtifactVersionMetadata&gt;` and uses Records.StoreArtifactVersionMetadata.SelectSql().
+    /// Internally this calls `context.TrySelectAnon&lt;Records.ArtifactVersionMetadataItem&gt;` and uses Records.ArtifactVersionMetadataItem.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectStoreArtifactVersionMetadataRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectArtifactVersionMetadataItemRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectStoreArtifactVersionMetadataRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreArtifactVersionMetadata.SelectSql() ] @ query |> buildSql
-        context.TrySelectAnon<Records.StoreArtifactVersionMetadata>(sql, parameters)
+    let trySelectArtifactVersionMetadataItemRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.ArtifactVersionMetadataItem.SelectSql() ] @ query |> buildSql
+        context.TrySelectAnon<Records.ArtifactVersionMetadataItem>(sql, parameters)
     
-    let insertStoreArtifactVersionMetadata (context: SqliteContext) (parameters: Parameters.NewStoreArtifactVersionMetadata) =
+    let insertArtifactVersionMetadataItem (context: SqliteContext) (parameters: Parameters.NewArtifactVersionMetadataItem) =
         context.Insert("store__artifact_version_metadata", parameters)
     
-    let tryInsertStoreArtifactVersionMetadata (context: SqliteContext) (parameters: Parameters.NewStoreArtifactVersionMetadata) =
+    let tryInsertArtifactVersionMetadataItem (context: SqliteContext) (parameters: Parameters.NewArtifactVersionMetadataItem) =
         context.TryInsert("store__artifact_version_metadata", parameters)
     
     /// <summary>
-    /// Select a `Records.StoreArtifactVersionTags` from the table `store__artifact_version_tags`.
-    /// Internally this calls `context.SelectSingleAnon&lt;Records.StoreArtifactVersionTags&gt;` and uses Records.StoreArtifactVersionTags.SelectSql().
+    /// Select a `Records.ArtifactVersionTag` from the table `store__artifact_version_tags`.
+    /// Internally this calls `context.SelectSingleAnon&lt;Records.ArtifactVersionTag&gt;` and uses Records.ArtifactVersionTag.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectStoreArtifactVersionTagsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectArtifactVersionTagRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectStoreArtifactVersionTagsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreArtifactVersionTags.SelectSql() ] @ query |> buildSql
-        context.SelectSingleAnon<Records.StoreArtifactVersionTags>(sql, parameters)
+    let selectArtifactVersionTagRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.ArtifactVersionTag.SelectSql() ] @ query |> buildSql
+        context.SelectSingleAnon<Records.ArtifactVersionTag>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.SelectAnon&lt;Records.StoreArtifactVersionTags&gt;` and uses Records.StoreArtifactVersionTags.SelectSql().
+    /// Internally this calls `context.SelectAnon&lt;Records.ArtifactVersionTag&gt;` and uses Records.ArtifactVersionTag.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectStoreArtifactVersionTagsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectArtifactVersionTagRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectStoreArtifactVersionTagsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreArtifactVersionTags.SelectSql() ] @ query |> buildSql
-        context.SelectAnon<Records.StoreArtifactVersionTags>(sql, parameters)
+    let selectArtifactVersionTagRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.ArtifactVersionTag.SelectSql() ] @ query |> buildSql
+        context.SelectAnon<Records.ArtifactVersionTag>(sql, parameters)
     /// <summary>
-    /// Select a `Records.StoreArtifactVersionTags` from the table `store__artifact_version_tags`.
-    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.StoreArtifactVersionTags&gt;` and uses Records.StoreArtifactVersionTags.SelectSql().
+    /// Select a `Records.ArtifactVersionTag` from the table `store__artifact_version_tags`.
+    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.ArtifactVersionTag&gt;` and uses Records.ArtifactVersionTag.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectStoreArtifactVersionTagsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectArtifactVersionTagRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectStoreArtifactVersionTagsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreArtifactVersionTags.SelectSql() ] @ query |> buildSql
-        context.TrySelectSingleAnon<Records.StoreArtifactVersionTags>(sql, parameters)
+    let trySelectArtifactVersionTagRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.ArtifactVersionTag.SelectSql() ] @ query |> buildSql
+        context.TrySelectSingleAnon<Records.ArtifactVersionTag>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.TrySelectAnon&lt;Records.StoreArtifactVersionTags&gt;` and uses Records.StoreArtifactVersionTags.SelectSql().
+    /// Internally this calls `context.TrySelectAnon&lt;Records.ArtifactVersionTag&gt;` and uses Records.ArtifactVersionTag.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectStoreArtifactVersionTagsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectArtifactVersionTagRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectStoreArtifactVersionTagsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreArtifactVersionTags.SelectSql() ] @ query |> buildSql
-        context.TrySelectAnon<Records.StoreArtifactVersionTags>(sql, parameters)
+    let trySelectArtifactVersionTagRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.ArtifactVersionTag.SelectSql() ] @ query |> buildSql
+        context.TrySelectAnon<Records.ArtifactVersionTag>(sql, parameters)
     
-    let insertStoreArtifactVersionTags (context: SqliteContext) (parameters: Parameters.NewStoreArtifactVersionTags) =
+    let insertArtifactVersionTag (context: SqliteContext) (parameters: Parameters.NewArtifactVersionTag) =
         context.Insert("store__artifact_version_tags", parameters)
     
-    let tryInsertStoreArtifactVersionTags (context: SqliteContext) (parameters: Parameters.NewStoreArtifactVersionTags) =
+    let tryInsertArtifactVersionTag (context: SqliteContext) (parameters: Parameters.NewArtifactVersionTag) =
         context.TryInsert("store__artifact_version_tags", parameters)
     
     /// <summary>
-    /// Select a `Records.StoreArtifactVersions` from the table `store__artifact_versions`.
-    /// Internally this calls `context.SelectSingleAnon&lt;Records.StoreArtifactVersions&gt;` and uses Records.StoreArtifactVersions.SelectSql().
+    /// Select a `Records.ArtifactVersion` from the table `store__artifact_versions`.
+    /// Internally this calls `context.SelectSingleAnon&lt;Records.ArtifactVersion&gt;` and uses Records.ArtifactVersion.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectStoreArtifactVersionsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectArtifactVersionRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectStoreArtifactVersionsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreArtifactVersions.SelectSql() ] @ query |> buildSql
-        context.SelectSingleAnon<Records.StoreArtifactVersions>(sql, parameters)
+    let selectArtifactVersionRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.ArtifactVersion.SelectSql() ] @ query |> buildSql
+        context.SelectSingleAnon<Records.ArtifactVersion>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.SelectAnon&lt;Records.StoreArtifactVersions&gt;` and uses Records.StoreArtifactVersions.SelectSql().
+    /// Internally this calls `context.SelectAnon&lt;Records.ArtifactVersion&gt;` and uses Records.ArtifactVersion.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectStoreArtifactVersionsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectArtifactVersionRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectStoreArtifactVersionsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreArtifactVersions.SelectSql() ] @ query |> buildSql
-        context.SelectAnon<Records.StoreArtifactVersions>(sql, parameters)
+    let selectArtifactVersionRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.ArtifactVersion.SelectSql() ] @ query |> buildSql
+        context.SelectAnon<Records.ArtifactVersion>(sql, parameters)
     /// <summary>
-    /// Select a `Records.StoreArtifactVersions` from the table `store__artifact_versions`.
-    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.StoreArtifactVersions&gt;` and uses Records.StoreArtifactVersions.SelectSql().
+    /// Select a `Records.ArtifactVersion` from the table `store__artifact_versions`.
+    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.ArtifactVersion&gt;` and uses Records.ArtifactVersion.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectStoreArtifactVersionsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectArtifactVersionRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectStoreArtifactVersionsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreArtifactVersions.SelectSql() ] @ query |> buildSql
-        context.TrySelectSingleAnon<Records.StoreArtifactVersions>(sql, parameters)
+    let trySelectArtifactVersionRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.ArtifactVersion.SelectSql() ] @ query |> buildSql
+        context.TrySelectSingleAnon<Records.ArtifactVersion>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.TrySelectAnon&lt;Records.StoreArtifactVersions&gt;` and uses Records.StoreArtifactVersions.SelectSql().
+    /// Internally this calls `context.TrySelectAnon&lt;Records.ArtifactVersion&gt;` and uses Records.ArtifactVersion.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectStoreArtifactVersionsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectArtifactVersionRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectStoreArtifactVersionsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreArtifactVersions.SelectSql() ] @ query |> buildSql
-        context.TrySelectAnon<Records.StoreArtifactVersions>(sql, parameters)
+    let trySelectArtifactVersionRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.ArtifactVersion.SelectSql() ] @ query |> buildSql
+        context.TrySelectAnon<Records.ArtifactVersion>(sql, parameters)
     
-    let insertStoreArtifactVersions (context: SqliteContext) (parameters: Parameters.NewStoreArtifactVersions) =
+    let insertArtifactVersion (context: SqliteContext) (parameters: Parameters.NewArtifactVersion) =
         context.Insert("store__artifact_versions", parameters)
     
-    let tryInsertStoreArtifactVersions (context: SqliteContext) (parameters: Parameters.NewStoreArtifactVersions) =
+    let tryInsertArtifactVersion (context: SqliteContext) (parameters: Parameters.NewArtifactVersion) =
         context.TryInsert("store__artifact_versions", parameters)
     
     /// <summary>
-    /// Select a `Records.StoreArtifacts` from the table `store__artifacts`.
-    /// Internally this calls `context.SelectSingleAnon&lt;Records.StoreArtifacts&gt;` and uses Records.StoreArtifacts.SelectSql().
+    /// Select a `Records.Artifact` from the table `store__artifacts`.
+    /// Internally this calls `context.SelectSingleAnon&lt;Records.Artifact&gt;` and uses Records.Artifact.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectStoreArtifactsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectArtifactRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectStoreArtifactsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreArtifacts.SelectSql() ] @ query |> buildSql
-        context.SelectSingleAnon<Records.StoreArtifacts>(sql, parameters)
+    let selectArtifactRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.Artifact.SelectSql() ] @ query |> buildSql
+        context.SelectSingleAnon<Records.Artifact>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.SelectAnon&lt;Records.StoreArtifacts&gt;` and uses Records.StoreArtifacts.SelectSql().
+    /// Internally this calls `context.SelectAnon&lt;Records.Artifact&gt;` and uses Records.Artifact.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectStoreArtifactsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectArtifactRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectStoreArtifactsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreArtifacts.SelectSql() ] @ query |> buildSql
-        context.SelectAnon<Records.StoreArtifacts>(sql, parameters)
+    let selectArtifactRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.Artifact.SelectSql() ] @ query |> buildSql
+        context.SelectAnon<Records.Artifact>(sql, parameters)
     /// <summary>
-    /// Select a `Records.StoreArtifacts` from the table `store__artifacts`.
-    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.StoreArtifacts&gt;` and uses Records.StoreArtifacts.SelectSql().
+    /// Select a `Records.Artifact` from the table `store__artifacts`.
+    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.Artifact&gt;` and uses Records.Artifact.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectStoreArtifactsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectArtifactRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectStoreArtifactsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreArtifacts.SelectSql() ] @ query |> buildSql
-        context.TrySelectSingleAnon<Records.StoreArtifacts>(sql, parameters)
+    let trySelectArtifactRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.Artifact.SelectSql() ] @ query |> buildSql
+        context.TrySelectSingleAnon<Records.Artifact>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.TrySelectAnon&lt;Records.StoreArtifacts&gt;` and uses Records.StoreArtifacts.SelectSql().
+    /// Internally this calls `context.TrySelectAnon&lt;Records.Artifact&gt;` and uses Records.Artifact.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectStoreArtifactsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectArtifactRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectStoreArtifactsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreArtifacts.SelectSql() ] @ query |> buildSql
-        context.TrySelectAnon<Records.StoreArtifacts>(sql, parameters)
+    let trySelectArtifactRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.Artifact.SelectSql() ] @ query |> buildSql
+        context.TrySelectAnon<Records.Artifact>(sql, parameters)
     
-    let insertStoreArtifacts (context: SqliteContext) (parameters: Parameters.NewStoreArtifacts) =
+    let insertArtifact (context: SqliteContext) (parameters: Parameters.NewArtifact) =
         context.Insert("store__artifacts", parameters)
     
-    let tryInsertStoreArtifacts (context: SqliteContext) (parameters: Parameters.NewStoreArtifacts) =
+    let tryInsertArtifact (context: SqliteContext) (parameters: Parameters.NewArtifact) =
         context.TryInsert("store__artifacts", parameters)
     
     /// <summary>
-    /// Select a `Records.StoreKeyValues` from the table `store__key_values`.
-    /// Internally this calls `context.SelectSingleAnon&lt;Records.StoreKeyValues&gt;` and uses Records.StoreKeyValues.SelectSql().
+    /// Select a `Records.KeyValue` from the table `store__key_values`.
+    /// Internally this calls `context.SelectSingleAnon&lt;Records.KeyValue&gt;` and uses Records.KeyValue.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectStoreKeyValuesRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectKeyValueRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectStoreKeyValuesRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreKeyValues.SelectSql() ] @ query |> buildSql
-        context.SelectSingleAnon<Records.StoreKeyValues>(sql, parameters)
+    let selectKeyValueRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.KeyValue.SelectSql() ] @ query |> buildSql
+        context.SelectSingleAnon<Records.KeyValue>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.SelectAnon&lt;Records.StoreKeyValues&gt;` and uses Records.StoreKeyValues.SelectSql().
+    /// Internally this calls `context.SelectAnon&lt;Records.KeyValue&gt;` and uses Records.KeyValue.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectStoreKeyValuesRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectKeyValueRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectStoreKeyValuesRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreKeyValues.SelectSql() ] @ query |> buildSql
-        context.SelectAnon<Records.StoreKeyValues>(sql, parameters)
+    let selectKeyValueRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.KeyValue.SelectSql() ] @ query |> buildSql
+        context.SelectAnon<Records.KeyValue>(sql, parameters)
     /// <summary>
-    /// Select a `Records.StoreKeyValues` from the table `store__key_values`.
-    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.StoreKeyValues&gt;` and uses Records.StoreKeyValues.SelectSql().
+    /// Select a `Records.KeyValue` from the table `store__key_values`.
+    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.KeyValue&gt;` and uses Records.KeyValue.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectStoreKeyValuesRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectKeyValueRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectStoreKeyValuesRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreKeyValues.SelectSql() ] @ query |> buildSql
-        context.TrySelectSingleAnon<Records.StoreKeyValues>(sql, parameters)
+    let trySelectKeyValueRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.KeyValue.SelectSql() ] @ query |> buildSql
+        context.TrySelectSingleAnon<Records.KeyValue>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.TrySelectAnon&lt;Records.StoreKeyValues&gt;` and uses Records.StoreKeyValues.SelectSql().
+    /// Internally this calls `context.TrySelectAnon&lt;Records.KeyValue&gt;` and uses Records.KeyValue.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectStoreKeyValuesRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectKeyValueRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectStoreKeyValuesRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreKeyValues.SelectSql() ] @ query |> buildSql
-        context.TrySelectAnon<Records.StoreKeyValues>(sql, parameters)
+    let trySelectKeyValueRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.KeyValue.SelectSql() ] @ query |> buildSql
+        context.TrySelectAnon<Records.KeyValue>(sql, parameters)
     
-    let insertStoreKeyValues (context: SqliteContext) (parameters: Parameters.NewStoreKeyValues) =
+    let insertKeyValue (context: SqliteContext) (parameters: Parameters.NewKeyValue) =
         context.Insert("store__key_values", parameters)
     
-    let tryInsertStoreKeyValues (context: SqliteContext) (parameters: Parameters.NewStoreKeyValues) =
+    let tryInsertKeyValue (context: SqliteContext) (parameters: Parameters.NewKeyValue) =
         context.TryInsert("store__key_values", parameters)
     
     /// <summary>
-    /// Select a `Records.StoreResourceVersionClassifications` from the table `store__resource_version_classifications`.
-    /// Internally this calls `context.SelectSingleAnon&lt;Records.StoreResourceVersionClassifications&gt;` and uses Records.StoreResourceVersionClassifications.SelectSql().
+    /// Select a `Records.ResourceVersionClassification` from the table `store__resource_version_classifications`.
+    /// Internally this calls `context.SelectSingleAnon&lt;Records.ResourceVersionClassification&gt;` and uses Records.ResourceVersionClassification.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectStoreResourceVersionClassificationsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectResourceVersionClassificationRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectStoreResourceVersionClassificationsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreResourceVersionClassifications.SelectSql() ] @ query |> buildSql
-        context.SelectSingleAnon<Records.StoreResourceVersionClassifications>(sql, parameters)
+    let selectResourceVersionClassificationRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.ResourceVersionClassification.SelectSql() ] @ query |> buildSql
+        context.SelectSingleAnon<Records.ResourceVersionClassification>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.SelectAnon&lt;Records.StoreResourceVersionClassifications&gt;` and uses Records.StoreResourceVersionClassifications.SelectSql().
+    /// Internally this calls `context.SelectAnon&lt;Records.ResourceVersionClassification&gt;` and uses Records.ResourceVersionClassification.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectStoreResourceVersionClassificationsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectResourceVersionClassificationRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectStoreResourceVersionClassificationsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreResourceVersionClassifications.SelectSql() ] @ query |> buildSql
-        context.SelectAnon<Records.StoreResourceVersionClassifications>(sql, parameters)
+    let selectResourceVersionClassificationRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.ResourceVersionClassification.SelectSql() ] @ query |> buildSql
+        context.SelectAnon<Records.ResourceVersionClassification>(sql, parameters)
     /// <summary>
-    /// Select a `Records.StoreResourceVersionClassifications` from the table `store__resource_version_classifications`.
-    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.StoreResourceVersionClassifications&gt;` and uses Records.StoreResourceVersionClassifications.SelectSql().
+    /// Select a `Records.ResourceVersionClassification` from the table `store__resource_version_classifications`.
+    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.ResourceVersionClassification&gt;` and uses Records.ResourceVersionClassification.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectStoreResourceVersionClassificationsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectResourceVersionClassificationRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectStoreResourceVersionClassificationsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreResourceVersionClassifications.SelectSql() ] @ query |> buildSql
-        context.TrySelectSingleAnon<Records.StoreResourceVersionClassifications>(sql, parameters)
+    let trySelectResourceVersionClassificationRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.ResourceVersionClassification.SelectSql() ] @ query |> buildSql
+        context.TrySelectSingleAnon<Records.ResourceVersionClassification>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.TrySelectAnon&lt;Records.StoreResourceVersionClassifications&gt;` and uses Records.StoreResourceVersionClassifications.SelectSql().
+    /// Internally this calls `context.TrySelectAnon&lt;Records.ResourceVersionClassification&gt;` and uses Records.ResourceVersionClassification.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectStoreResourceVersionClassificationsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectResourceVersionClassificationRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectStoreResourceVersionClassificationsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreResourceVersionClassifications.SelectSql() ] @ query |> buildSql
-        context.TrySelectAnon<Records.StoreResourceVersionClassifications>(sql, parameters)
+    let trySelectResourceVersionClassificationRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.ResourceVersionClassification.SelectSql() ] @ query |> buildSql
+        context.TrySelectAnon<Records.ResourceVersionClassification>(sql, parameters)
     
-    let insertStoreResourceVersionClassifications (context: SqliteContext) (parameters: Parameters.NewStoreResourceVersionClassifications) =
+    let insertResourceVersionClassification (context: SqliteContext) (parameters: Parameters.NewResourceVersionClassification) =
         context.Insert("store__resource_version_classifications", parameters)
     
-    let tryInsertStoreResourceVersionClassifications (context: SqliteContext) (parameters: Parameters.NewStoreResourceVersionClassifications) =
+    let tryInsertResourceVersionClassification (context: SqliteContext) (parameters: Parameters.NewResourceVersionClassification) =
         context.TryInsert("store__resource_version_classifications", parameters)
     
     /// <summary>
-    /// Select a `Records.StoreResourceVersionMetadata` from the table `store__resource_version_metadata`.
-    /// Internally this calls `context.SelectSingleAnon&lt;Records.StoreResourceVersionMetadata&gt;` and uses Records.StoreResourceVersionMetadata.SelectSql().
+    /// Select a `Records.ResourceVersionMetadataItem` from the table `store__resource_version_metadata`.
+    /// Internally this calls `context.SelectSingleAnon&lt;Records.ResourceVersionMetadataItem&gt;` and uses Records.ResourceVersionMetadataItem.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectStoreResourceVersionMetadataRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectResourceVersionMetadataItemRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectStoreResourceVersionMetadataRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreResourceVersionMetadata.SelectSql() ] @ query |> buildSql
-        context.SelectSingleAnon<Records.StoreResourceVersionMetadata>(sql, parameters)
+    let selectResourceVersionMetadataItemRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.ResourceVersionMetadataItem.SelectSql() ] @ query |> buildSql
+        context.SelectSingleAnon<Records.ResourceVersionMetadataItem>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.SelectAnon&lt;Records.StoreResourceVersionMetadata&gt;` and uses Records.StoreResourceVersionMetadata.SelectSql().
+    /// Internally this calls `context.SelectAnon&lt;Records.ResourceVersionMetadataItem&gt;` and uses Records.ResourceVersionMetadataItem.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectStoreResourceVersionMetadataRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectResourceVersionMetadataItemRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectStoreResourceVersionMetadataRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreResourceVersionMetadata.SelectSql() ] @ query |> buildSql
-        context.SelectAnon<Records.StoreResourceVersionMetadata>(sql, parameters)
+    let selectResourceVersionMetadataItemRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.ResourceVersionMetadataItem.SelectSql() ] @ query |> buildSql
+        context.SelectAnon<Records.ResourceVersionMetadataItem>(sql, parameters)
     /// <summary>
-    /// Select a `Records.StoreResourceVersionMetadata` from the table `store__resource_version_metadata`.
-    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.StoreResourceVersionMetadata&gt;` and uses Records.StoreResourceVersionMetadata.SelectSql().
+    /// Select a `Records.ResourceVersionMetadataItem` from the table `store__resource_version_metadata`.
+    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.ResourceVersionMetadataItem&gt;` and uses Records.ResourceVersionMetadataItem.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectStoreResourceVersionMetadataRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectResourceVersionMetadataItemRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectStoreResourceVersionMetadataRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreResourceVersionMetadata.SelectSql() ] @ query |> buildSql
-        context.TrySelectSingleAnon<Records.StoreResourceVersionMetadata>(sql, parameters)
+    let trySelectResourceVersionMetadataItemRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.ResourceVersionMetadataItem.SelectSql() ] @ query |> buildSql
+        context.TrySelectSingleAnon<Records.ResourceVersionMetadataItem>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.TrySelectAnon&lt;Records.StoreResourceVersionMetadata&gt;` and uses Records.StoreResourceVersionMetadata.SelectSql().
+    /// Internally this calls `context.TrySelectAnon&lt;Records.ResourceVersionMetadataItem&gt;` and uses Records.ResourceVersionMetadataItem.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectStoreResourceVersionMetadataRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectResourceVersionMetadataItemRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectStoreResourceVersionMetadataRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreResourceVersionMetadata.SelectSql() ] @ query |> buildSql
-        context.TrySelectAnon<Records.StoreResourceVersionMetadata>(sql, parameters)
+    let trySelectResourceVersionMetadataItemRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.ResourceVersionMetadataItem.SelectSql() ] @ query |> buildSql
+        context.TrySelectAnon<Records.ResourceVersionMetadataItem>(sql, parameters)
     
-    let insertStoreResourceVersionMetadata (context: SqliteContext) (parameters: Parameters.NewStoreResourceVersionMetadata) =
+    let insertResourceVersionMetadataItem (context: SqliteContext) (parameters: Parameters.NewResourceVersionMetadataItem) =
         context.Insert("store__resource_version_metadata", parameters)
     
-    let tryInsertStoreResourceVersionMetadata (context: SqliteContext) (parameters: Parameters.NewStoreResourceVersionMetadata) =
+    let tryInsertResourceVersionMetadataItem (context: SqliteContext) (parameters: Parameters.NewResourceVersionMetadataItem) =
         context.TryInsert("store__resource_version_metadata", parameters)
     
     /// <summary>
-    /// Select a `Records.StoreResourceVersionTags` from the table `store__resource_version_tags`.
-    /// Internally this calls `context.SelectSingleAnon&lt;Records.StoreResourceVersionTags&gt;` and uses Records.StoreResourceVersionTags.SelectSql().
+    /// Select a `Records.Artifact` from the table `store__resource_version_tags`.
+    /// Internally this calls `context.SelectSingleAnon&lt;Records.Artifact&gt;` and uses Records.Artifact.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectStoreResourceVersionTagsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectArtifactRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectStoreResourceVersionTagsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreResourceVersionTags.SelectSql() ] @ query |> buildSql
-        context.SelectSingleAnon<Records.StoreResourceVersionTags>(sql, parameters)
+    let selectArtifactRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.Artifact.SelectSql() ] @ query |> buildSql
+        context.SelectSingleAnon<Records.Artifact>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.SelectAnon&lt;Records.StoreResourceVersionTags&gt;` and uses Records.StoreResourceVersionTags.SelectSql().
+    /// Internally this calls `context.SelectAnon&lt;Records.Artifact&gt;` and uses Records.Artifact.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectStoreResourceVersionTagsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectArtifactRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectStoreResourceVersionTagsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreResourceVersionTags.SelectSql() ] @ query |> buildSql
-        context.SelectAnon<Records.StoreResourceVersionTags>(sql, parameters)
+    let selectArtifactRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.Artifact.SelectSql() ] @ query |> buildSql
+        context.SelectAnon<Records.Artifact>(sql, parameters)
     /// <summary>
-    /// Select a `Records.StoreResourceVersionTags` from the table `store__resource_version_tags`.
-    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.StoreResourceVersionTags&gt;` and uses Records.StoreResourceVersionTags.SelectSql().
+    /// Select a `Records.Artifact` from the table `store__resource_version_tags`.
+    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.Artifact&gt;` and uses Records.Artifact.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectStoreResourceVersionTagsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectArtifactRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectStoreResourceVersionTagsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreResourceVersionTags.SelectSql() ] @ query |> buildSql
-        context.TrySelectSingleAnon<Records.StoreResourceVersionTags>(sql, parameters)
+    let trySelectArtifactRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.Artifact.SelectSql() ] @ query |> buildSql
+        context.TrySelectSingleAnon<Records.Artifact>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.TrySelectAnon&lt;Records.StoreResourceVersionTags&gt;` and uses Records.StoreResourceVersionTags.SelectSql().
+    /// Internally this calls `context.TrySelectAnon&lt;Records.Artifact&gt;` and uses Records.Artifact.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectStoreResourceVersionTagsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectArtifactRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectStoreResourceVersionTagsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreResourceVersionTags.SelectSql() ] @ query |> buildSql
-        context.TrySelectAnon<Records.StoreResourceVersionTags>(sql, parameters)
+    let trySelectArtifactRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.Artifact.SelectSql() ] @ query |> buildSql
+        context.TrySelectAnon<Records.Artifact>(sql, parameters)
     
-    let insertStoreResourceVersionTags (context: SqliteContext) (parameters: Parameters.NewStoreResourceVersionTags) =
+    let insertArtifact (context: SqliteContext) (parameters: Parameters.NewArtifact) =
         context.Insert("store__resource_version_tags", parameters)
     
-    let tryInsertStoreResourceVersionTags (context: SqliteContext) (parameters: Parameters.NewStoreResourceVersionTags) =
+    let tryInsertArtifact (context: SqliteContext) (parameters: Parameters.NewArtifact) =
         context.TryInsert("store__resource_version_tags", parameters)
     
     /// <summary>
-    /// Select a `Records.StoreResourceVersions` from the table `store__resource_versions`.
-    /// Internally this calls `context.SelectSingleAnon&lt;Records.StoreResourceVersions&gt;` and uses Records.StoreResourceVersions.SelectSql().
+    /// Select a `Records.ResourceVersion` from the table `store__resource_versions`.
+    /// Internally this calls `context.SelectSingleAnon&lt;Records.ResourceVersion&gt;` and uses Records.ResourceVersion.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectStoreResourceVersionsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectResourceVersionRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectStoreResourceVersionsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreResourceVersions.SelectSql() ] @ query |> buildSql
-        context.SelectSingleAnon<Records.StoreResourceVersions>(sql, parameters)
+    let selectResourceVersionRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.ResourceVersion.SelectSql() ] @ query |> buildSql
+        context.SelectSingleAnon<Records.ResourceVersion>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.SelectAnon&lt;Records.StoreResourceVersions&gt;` and uses Records.StoreResourceVersions.SelectSql().
+    /// Internally this calls `context.SelectAnon&lt;Records.ResourceVersion&gt;` and uses Records.ResourceVersion.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectStoreResourceVersionsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectResourceVersionRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectStoreResourceVersionsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreResourceVersions.SelectSql() ] @ query |> buildSql
-        context.SelectAnon<Records.StoreResourceVersions>(sql, parameters)
+    let selectResourceVersionRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.ResourceVersion.SelectSql() ] @ query |> buildSql
+        context.SelectAnon<Records.ResourceVersion>(sql, parameters)
     /// <summary>
-    /// Select a `Records.StoreResourceVersions` from the table `store__resource_versions`.
-    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.StoreResourceVersions&gt;` and uses Records.StoreResourceVersions.SelectSql().
+    /// Select a `Records.ResourceVersion` from the table `store__resource_versions`.
+    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.ResourceVersion&gt;` and uses Records.ResourceVersion.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectStoreResourceVersionsRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectResourceVersionRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectStoreResourceVersionsRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreResourceVersions.SelectSql() ] @ query |> buildSql
-        context.TrySelectSingleAnon<Records.StoreResourceVersions>(sql, parameters)
+    let trySelectResourceVersionRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.ResourceVersion.SelectSql() ] @ query |> buildSql
+        context.TrySelectSingleAnon<Records.ResourceVersion>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.TrySelectAnon&lt;Records.StoreResourceVersions&gt;` and uses Records.StoreResourceVersions.SelectSql().
+    /// Internally this calls `context.TrySelectAnon&lt;Records.ResourceVersion&gt;` and uses Records.ResourceVersion.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectStoreResourceVersionsRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectResourceVersionRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectStoreResourceVersionsRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreResourceVersions.SelectSql() ] @ query |> buildSql
-        context.TrySelectAnon<Records.StoreResourceVersions>(sql, parameters)
+    let trySelectResourceVersionRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.ResourceVersion.SelectSql() ] @ query |> buildSql
+        context.TrySelectAnon<Records.ResourceVersion>(sql, parameters)
     
-    let insertStoreResourceVersions (context: SqliteContext) (parameters: Parameters.NewStoreResourceVersions) =
+    let insertResourceVersion (context: SqliteContext) (parameters: Parameters.NewResourceVersion) =
         context.Insert("store__resource_versions", parameters)
     
-    let tryInsertStoreResourceVersions (context: SqliteContext) (parameters: Parameters.NewStoreResourceVersions) =
+    let tryInsertResourceVersion (context: SqliteContext) (parameters: Parameters.NewResourceVersion) =
         context.TryInsert("store__resource_versions", parameters)
     
     /// <summary>
-    /// Select a `Records.StoreResources` from the table `store__resources`.
-    /// Internally this calls `context.SelectSingleAnon&lt;Records.StoreResources&gt;` and uses Records.StoreResources.SelectSql().
+    /// Select a `Records.Resource` from the table `store__resources`.
+    /// Internally this calls `context.SelectSingleAnon&lt;Records.Resource&gt;` and uses Records.Resource.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectStoreResourcesRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectResourceRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectStoreResourcesRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreResources.SelectSql() ] @ query |> buildSql
-        context.SelectSingleAnon<Records.StoreResources>(sql, parameters)
+    let selectResourceRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.Resource.SelectSql() ] @ query |> buildSql
+        context.SelectSingleAnon<Records.Resource>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.SelectAnon&lt;Records.StoreResources&gt;` and uses Records.StoreResources.SelectSql().
+    /// Internally this calls `context.SelectAnon&lt;Records.Resource&gt;` and uses Records.Resource.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = selectStoreResourcesRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = selectResourceRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let selectStoreResourcesRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreResources.SelectSql() ] @ query |> buildSql
-        context.SelectAnon<Records.StoreResources>(sql, parameters)
+    let selectResourceRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.Resource.SelectSql() ] @ query |> buildSql
+        context.SelectAnon<Records.Resource>(sql, parameters)
     /// <summary>
-    /// Select a `Records.StoreResources` from the table `store__resources`.
-    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.StoreResources&gt;` and uses Records.StoreResources.SelectSql().
+    /// Select a `Records.Resource` from the table `store__resources`.
+    /// Internally this calls `context.TrySelectSingleAnon&lt;Records.Resource&gt;` and uses Records.Resource.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectStoreResourcesRecord ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectResourceRecord ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectStoreResourcesRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreResources.SelectSql() ] @ query |> buildSql
-        context.TrySelectSingleAnon<Records.StoreResources>(sql, parameters)
+    let trySelectResourceRecord (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.Resource.SelectSql() ] @ query |> buildSql
+        context.TrySelectSingleAnon<Records.Resource>(sql, parameters)
     
     /// <summary>
-    /// Internally this calls `context.TrySelectAnon&lt;Records.StoreResources&gt;` and uses Records.StoreResources.SelectSql().
+    /// Internally this calls `context.TrySelectAnon&lt;Records.Resource&gt;` and uses Records.Resource.SelectSql().
     /// The caller can provide extra string lines to create a query and boxed parameters.
     /// It is up to the caller to verify the sql and parameters are correct,
     /// this should be considered an internal function (not exposed in public APIs).
     /// Parameters are assigned names based on their order in 0 indexed array. For example: @0,@1,@2...
     /// </summary>
     /// <remarks>
-    /// This record was generated via Freql.Tools on 03/07/2025 23:50:19
+    /// This record was generated via Freql.Tools on 06/07/2025 17:21:44
     /// </remarks>
     /// <example>
     /// <code>
-    /// let result = trySelectStoreResourcesRecords ctx "WHERE `field` = @0" [ box `value` ]
+    /// let result = trySelectResourceRecords ctx "WHERE `field` = @0" [ box `value` ]
     /// </code>
     /// </example>
-    let trySelectStoreResourcesRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
-        let sql = [ Records.StoreResources.SelectSql() ] @ query |> buildSql
-        context.TrySelectAnon<Records.StoreResources>(sql, parameters)
+    let trySelectResourceRecords (context: SqliteContext) (query: string list) (parameters: obj list) =
+        let sql = [ Records.Resource.SelectSql() ] @ query |> buildSql
+        context.TrySelectAnon<Records.Resource>(sql, parameters)
     
-    let insertStoreResources (context: SqliteContext) (parameters: Parameters.NewStoreResources) =
+    let insertResource (context: SqliteContext) (parameters: Parameters.NewResource) =
         context.Insert("store__resources", parameters)
     
-    let tryInsertStoreResources (context: SqliteContext) (parameters: Parameters.NewStoreResources) =
+    let tryInsertResource (context: SqliteContext) (parameters: Parameters.NewResource) =
         context.TryInsert("store__resources", parameters)
     
 [<RequireQualifiedAccess>]
 module Initialization =
     let sql (checkIfExists: bool) =
-        [ Records.CfgUserGroups.InitializationSql checkIfExists
-          Records.CfgPipelines.InitializationSql checkIfExists
-          Records.CfgPipelineVersions.InitializationSql checkIfExists
-          Records.StoreResources.InitializationSql checkIfExists
-          Records.CfgFileTypes.InitializationSql checkIfExists
-          Records.StoreArtifacts.InitializationSql checkIfExists
-          Records.CorePipelineRuns.InitializationSql checkIfExists
-          Records.StoreResourceVersions.InitializationSql checkIfExists
-          Records.CfgTags.InitializationSql checkIfExists
-          Records.StoreArtifactVersions.InitializationSql checkIfExists
-          Records.CfgPipelineVersionSteps.InitializationSql checkIfExists
-          Records.CorePipelineRunResources.InitializationSql checkIfExists
-          Records.CorePipelineRunArtifacts.InitializationSql checkIfExists
-          Records.StoreResourceVersionTags.InitializationSql checkIfExists
-          Records.StoreResourceVersionMetadata.InitializationSql checkIfExists
-          Records.StoreResourceVersionClassifications.InitializationSql checkIfExists
-          Records.StoreKeyValues.InitializationSql checkIfExists
-          Records.StoreArtifactVersionTags.InitializationSql checkIfExists
-          Records.StoreArtifactVersionMetadata.InitializationSql checkIfExists
-          Records.StoreArtifactVersionClassifications.InitializationSql checkIfExists
-          Records.CorePipelineRunStepResults.InitializationSql checkIfExists
-          Records.CorePipelineRunResults.InitializationSql checkIfExists
-          Records.CorePipelineRunResourceTags.InitializationSql checkIfExists
+        [ Records.UserGroup.InitializationSql checkIfExists
+          Records.Pipeline.InitializationSql checkIfExists
+          Records.PipelineVersion.InitializationSql checkIfExists
+          Records.Resource.InitializationSql checkIfExists
+          Records.FileType.InitializationSql checkIfExists
+          Records.Artifact.InitializationSql checkIfExists
+          Records.PipelineRun.InitializationSql checkIfExists
+          Records.ResourceVersion.InitializationSql checkIfExists
+          Records.Tag.InitializationSql checkIfExists
+          Records.ArtifactVersion.InitializationSql checkIfExists
+          Records.PipelineVersionStep.InitializationSql checkIfExists
+          Records.PipelineRunResource.InitializationSql checkIfExists
+          Records.PipelineRunArtifact.InitializationSql checkIfExists
+          Records.Artifact.InitializationSql checkIfExists
+          Records.ResourceVersionMetadataItem.InitializationSql checkIfExists
+          Records.ResourceVersionClassification.InitializationSql checkIfExists
+          Records.KeyValue.InitializationSql checkIfExists
+          Records.ArtifactVersionTag.InitializationSql checkIfExists
+          Records.ArtifactVersionMetadataItem.InitializationSql checkIfExists
+          Records.ArtifactVersionClassification.InitializationSql checkIfExists
+          Records.PipelineRunStepResult.InitializationSql checkIfExists
+          Records.PipelineRunResult.InitializationSql checkIfExists
+          Records.PipelineRunResourceTag.InitializationSql checkIfExists
           Records.CorePipelineRunResourceMetadata.InitializationSql checkIfExists
-          Records.CorePipelineRunResourceClassifications.InitializationSql checkIfExists
-          Records.CorePipelineRunPaths.InitializationSql checkIfExists
-          Records.CorePipelineRunLogs.InitializationSql checkIfExists
-          Records.CorePipelineRunKeyValues.InitializationSql checkIfExists
-          Records.CorePipelineRunDataStore.InitializationSql checkIfExists
-          Records.CorePipelineRunArtifactTags.InitializationSql checkIfExists
-          Records.CorePipelineRunArtifactMetadata.InitializationSql checkIfExists
-          Records.CorePipelineRunArtifactClassifications.InitializationSql checkIfExists
-          Records.CfgMetadata.InitializationSql checkIfExists
-          Records.CfgUsers.InitializationSql checkIfExists ]
+          Records.PipelineRunResourceClassification.InitializationSql checkIfExists
+          Records.PipelineRunPath.InitializationSql checkIfExists
+          Records.PipelineRunLogItem.InitializationSql checkIfExists
+          Records.PipelineRunKeyValue.InitializationSql checkIfExists
+          Records.PipelineRunDataStoreItem.InitializationSql checkIfExists
+          Records.PipelineRunArtifactTag.InitializationSql checkIfExists
+          Records.PipelineRunArtifactMetadataItem.InitializationSql checkIfExists
+          Records.PipelineRunArtifactClassification.InitializationSql checkIfExists
+          Records.MetadataItem.InitializationSql checkIfExists
+          Records.User.InitializationSql checkIfExists ]
         |> List.concat
 
     let run (checkIfExists: bool) (ctx: SqliteContext) =
