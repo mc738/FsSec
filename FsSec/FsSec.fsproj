@@ -6,15 +6,32 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <Compile Include="V1\Core\Common.fs" />
         <Compile Include="V1\Core\Artifacts.fs" />
         <Compile Include="V1\Core\Resources.fs" />
+        <Compile Include="V1\Core\Configuration.fs" />
+        <Folder Include="V1\Configuration\Store\" />
+        <Compile Include="V1\Store\Core\Domain.fs" />
         <Compile Include="V1\Store\Core\IFsSecStore.fs" />
         <Compile Include="V1\Store\SQLite\Persistence.fs" />
         <Compile Include="V1\Store\SQLite\Operations.fs" />
+        <Compile Include="V1\Store\SQLite\Configuration.fs" />
         <Compile Include="V1\Store\SQLite\Impl.fs" />
+        <Compile Include="V1\Store\Configuration.fs" />
+        <Compile Include="V1\Store\Impl.fs" />
+        <Compile Include="V1\Scripting\Fsharp\Impl.fs" />
         <Compile Include="V1\Reporting\Core.fs" />
+        <Compile Include="V1\Pipelines\Store\Core\Domain.fs" />
+        <Compile Include="V1\Pipelines\Store\Core\IFsSecPipelineStore.fs" />
+        <Compile Include="V1\Pipelines\Store\SQLite\Persistence.fs" />
+        <Compile Include="V1\Pipelines\Store\SQLite\Operations.fs" />
+        <Compile Include="V1\Pipelines\Store\SQLite\Impl.fs" />
+        <Compile Include="V1\Pipelines\Store\Impl.fs" />
         <Compile Include="V1\Pipelines\Core.fs" />
         <Compile Include="V1\Pipelines\Configuration.fs" />
+        <Compile Include="V1\Pipelines\Operations.fs" />
+        <Compile Include="V1\Pipelines\Impl.fs" />
+        
     </ItemGroup>
 
     <ItemGroup>
