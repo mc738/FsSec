@@ -17,4 +17,8 @@
       <Content Include="Dockerfile" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\FsSec\FsSec.fsproj" />
+    </ItemGroup>
+
 </Project>
