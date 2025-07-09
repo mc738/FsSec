@@ -1,0 +1,193 @@
+[
+    {
+        "name": "fssec_store_sqlite_v1",
+        "type": "sqlite",
+        "connectionString": "Data Source=C:\\Users\\mclif\\Projects\\dotnet\\FsSec\\.prototypes\\fessec_store.db",
+        "generatorProfiles": [
+          {
+            "name": "records",
+            "outputPath": "C:\\Users\\mclif\\Projects\\dotnet\\FsSec\\FsSec\\V1\\Store\\SQLite\\Persistence.fs",
+            "namespace": "FunkyPM.V1.Store.SQLite.Persistence",
+            "moduleName": "Records",
+            "includeJsonAttributes": true,
+            "nameSuffix": "Record",
+            "typeReplacements": [
+              {
+                "matchValue": "entry_date|created_on|published_on|last_updated",
+                "matchType": "regex",
+                "replacementValue": "DateTime",
+                "replacementInitValue": "DateTime.UtcNow"
+              },
+              {
+                "matchValue": "active|is_open|two_way|$published^|optional|is_broker_signature|is_draft|was_successful|is_error|is_warning|can_be_continued|has_been_refreshed|^draft$",
+                "matchType": "regex",
+                "replacementValue": "bool",
+                "replacementInitValue": "true"
+              },
+              {
+                "matchValue": "schema_version|version$|revision|height|width|^x$|^y$|index$|version_number|part_number|order|max_retry_attempt|^version$",
+                "matchType": "regex",
+                "replacementValue": "int",
+                "replacementInitValue": "0"
+              }
+            ],
+            "tableNameReplacements": [
+              {
+                  "name": "cfg__pipeline_version_steps",
+                  "replacementName": "pipeline_version_step"
+              },  
+              {
+                "name": "cfg__pipeline_versions",
+                "replacementName": "pipeline_version"
+              },
+              {
+                "name": "cfg__pipelines",
+                "replacementName": "pipeline"
+              },
+              {
+                "name": "cfg__user_groups",
+                "replacementName": "user_group"
+              },
+              {
+                "name": "cfg__users",
+                "replacementName": "user"
+              },
+              {
+                "name": "cfg_classifications",
+                "replacementName": "classification"
+              },
+              {
+                "name": "cfg_file_types",
+                "replacementName": "file_type"
+              },
+              {
+                "name": "cfg_metadata",
+                "replacementName": "metadata_item"
+              },
+              {
+                "name": "item_groups",
+                "replacementName": "item_group"
+              },
+              {
+                "name": "cfg_tags",
+                "replacementName": "tag"
+              },
+              {
+                "name": "core__pipeline_run_artifact_classifications",
+                "replacementName": "pipeline_run_artifact_classification"
+              },
+              {
+                "name": "core__pipeline_run_artifact_metadata",
+                "replacementName": "pipeline_run_artifact_metadata_item"
+              },
+              {
+                "name": "core__pipeline_run_artifact_tags",
+                "replacementName": "pipeline_run_artifact_tag"
+              },
+              {
+                "name": "core__pipeline_run_artifacts",
+                "replacementName": "pipeline_run_artifact"
+              },
+              {
+                "name": "core__pipeline_run_data_store",
+                "replacementName": "pipeline_run_data_store_item"
+              },
+              {
+                "name": "core__pipeline_run_key_values",
+                "replacementName": "pipeline_run_key_value"
+              },
+              {
+                "name": "core__pipeline_run_logs",
+                "replacementName": "pipeline_run_log_item"
+              },
+              {
+                "name": "core__pipeline_run_paths",
+                "replacementName": "pipeline_run_path"
+              },
+              {
+                "name": "core__pipeline_run_resource_classifications",
+                "replacementName": "pipeline_run_resource_classification"
+              },
+              {
+                "name": "core__pipeline_run_resource_tags",
+                "replacementName": "pipeline_run_resource_tag"
+              },
+              {
+                "name": "core__pipeline_run_resources",
+                "replacementName": "pipeline_run_resource"
+              },
+              {
+                "name": "core__pipeline_run_key_values",
+                "replacementName": "pipeline_run_key_value"
+              },
+              {
+                "name": "core__pipeline_run_results",
+                "replacementName": "pipeline_run_result"
+              },
+              {
+                "name": "core__pipeline_run_paths",
+                "replacementName": "pipeline_run_path"
+              },
+              {
+                "name": "core__pipeline_run_step_results",
+                "replacementName": "pipeline_run_step_result"
+              },
+              {
+                "name": "core__pipeline_runs",
+                "replacementName": "pipeline_run"
+              },
+
+              {
+                "name": "store__artifact_version_classifications",
+                "replacementName": "artifact_version_classification"
+              },
+              {
+                "name": "store__artifact_version_metadata",
+                "replacementName": "artifact_version_metadata_item"
+              },
+              {
+                "name": "store__artifact_version_tags",
+                "replacementName": "artifact_version_tag"
+              },
+              {
+                "name": "store__artifact_versions",
+                "replacementName": "artifact_version"
+              },
+              {
+                "name": "store__artifacts",
+                "replacementName": "artifact"
+              },
+
+              {
+                "name": "store__key_values",
+                "replacementName": "key_value"
+              },
+              {
+                "name": "store__resource_version_classifications",
+                "replacementName": "resource_version_classification"
+              },
+              {
+                "name": "store__resource_version_metadata",
+                "replacementName": "resource_version_metadata_item"
+              },
+              {
+                "name": "store__artifact_versions",
+                "replacementName": "artifact_version"
+              },
+              {
+                "name": "store__resource_version_tags",
+                "replacementName": "artifact"
+              },
+              {
+                "name": "store__resource_versions",
+                "replacementName": "resource_version"
+              },
+              {
+                "name": "store__resources",
+                "replacementName": "resource"
+              }
+            ]
+          }
+        ]
+    }
+]
